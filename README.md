@@ -128,8 +128,8 @@ git commit -m "feat: complete JALA Academy front-end UI assignments (HTML5, CSS3
 # Rename default branch to main
 git branch -M main
 
-# Add your repository remote URL (replace with your actual GitHub URL)
-git remote add origin https://github.com/<your-username>/JALA-Academy-Front-End-Assignments.git
+# Add your repository remote URL
+git remote add origin https://github.com/Manojkrish122/JALA-Academy-Front-End-Assignments.git
 
 # Push all files at once
 git push -u origin main
@@ -137,7 +137,7 @@ git push -u origin main
 
 ### Step 4: Submit Your Repository Link
 Copy your public repository URL:
-`https://github.com/<your-username>/JALA-Academy-Front-End-Assignments`
+`https://github.com/Manojkrish122/JALA-Academy-Front-End-Assignments`
 and share it with the **JALA Placement Team**!
 
 ---
@@ -148,6 +148,7 @@ Before attending your technical interview, review **[`INTERVIEW_PREP.md`](INTERV
 ---
 
 ## 👨‍💻 Author & Acknowledgments
+- **Candidate / Author**: [Manoj Krishna (Manojkrish122)](https://github.com/Manojkrish122)
 - **Prepared for**: JALA Academy Full Stack & Front-End Placement Program
 - **Reference Resources**:
   - [Bright IT Career Official Portal](https://brightitcareer.com/)
