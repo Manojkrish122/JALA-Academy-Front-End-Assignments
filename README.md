@@ -148,7 +148,7 @@ Before attending your technical interview, review **[`INTERVIEW_PREP.md`](INTERV
 ---
 
 ## 👨‍💻 Author & Acknowledgments
-- **Candidate / Author**: [Manoj Krishna (Manojkrish122)](https://github.com/Manojkrish122)
+- **Candidate / Author**: [Manoj K (Manojkrish122)](https://github.com/Manojkrish122)
 - **Prepared for**: JALA Academy Full Stack & Front-End Placement Program
 - **Reference Resources**:
   - [Bright IT Career Official Portal](https://brightitcareer.com/)
