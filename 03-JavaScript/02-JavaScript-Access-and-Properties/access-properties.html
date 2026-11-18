@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - JavaScript Access & Properties Assignment</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #ccfbf1; }
+        .btn { padding: 9px 18px; background: #0d9488; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { background: #0f766e; }
+        .btn-disappear { background: #e11d48; }
+        .btn-disappear:hover { background: #be123c; }
+        .output-box { margin-top: 15px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border-left: 4px solid #0d9488; white-space: pre-wrap; }
+        .counter-badge { display: inline-block; font-size: 2.2rem; font-weight: bold; color: #0d9488; padding: 10px 25px; background: #f0fdfa; border-radius: 8px; border: 2px solid #5eead4; margin: 10px 0; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #2dd4bf; }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>JavaScript Access and Properties</h1>
+            <p>Mastering the <code>this</code> keyword, <code>call()</code> vs <code>apply()</code>, increment counters, getter/setter accessors, and prototype object extensions.</p>
+        </header>
+
+        <!-- Question 1: Disappearing Button via "this" keyword -->
+        <section class="card">
+            <h2>1. "this" Keyword: Disappearing Button on Click</h2>
+            <p>Click the red button below. The button uses the <code>this</code> keyword (referencing itself) to disappear from the page (<code>this.style.display = 'none';</code>):</p>
+            
+            <button class="btn btn-disappear" id="disappearingBtn" onclick="this.style.display='none'; document.getElementById('restoreHint').style.display='inline-block';">
+                Click Me: I will Disappear using "this"!
+            </button>
+            <span id="restoreHint" style="display:none; margin-left: 15px; color: #64748b; font-size: 0.9rem;">
+                Button disappeared! <button class="btn" onclick="document.getElementById('disappearingBtn').style.display='inline-block'; this.parentElement.style.display='none';" style="padding: 4px 10px; font-size: 0.8rem;">Restore Button</button>
+            </span>
+        </section>
+
+        <!-- Question 2: call() vs apply() and Spotting the Difference -->
+        <section class="card">
+            <h2>2. Function Invocation: call() vs apply()</h2>
+            <p>Both methods invoke a function with a specified <code>this</code> context, but differ in how arguments are passed:</p>
+            <button class="btn" id="runCallApplyBtn">Execute call() and apply()</button>
+            <div class="output-box" id="callApplyOutput">Click button to execute and inspect the difference.</div>
+        </section>
+
+        <!-- Question 3: Standard Incremental Counter -->
+        <section class="card">
+            <h2>3. Interactive Click Counter</h2>
+            <p>Click the "Count" button to increment the counter value:</p>
+            <div>
+                <span class="counter-badge" id="countDisplay">0</span>
+            </div>
+            <button class="btn" id="incrementBtn">Count (Increment +1)</button>
+            <button class="btn" style="background:#64748b; margin-left:8px;" id="resetCountBtn">Reset</button>
+        </section>
+
+        <!-- Question 4: Counter with Getter and Setter Accessors -->
+        <section class="card">
+            <h2>4. Counter Using Getter and Setter Accessors</h2>
+            <p>Demonstrating modern ES5/ES6 <code>get</code> and <code>set</code> property accessors on an object with validation logic:</p>
+            <button class="btn" id="runAccessorCounterBtn">Test Getter/Setter Counter Operations</button>
+            <div class="output-box" id="accessorOutput">Click to test getter and setter accessors.</div>
+        </section>
+
+        <!-- Question 5: Add Properties via Object Prototype -->
+        <section class="card">
+            <h2>5. Extending Function Constructors Using Prototypes</h2>
+            <p>Adding new properties and methods to an existing constructor function via <code>Function.prototype</code>:</p>
+            <button class="btn" id="runPrototypeBtn">Add Prototype Properties to Person Constructor</button>
+            <div class="output-box" id="prototypeOutput">Click to execute prototype extension.</div>
+        </section>
+
+        <!-- Things to know -->
+        <footer class="card interview-info">
+            <h3>Things to Know: Keywords and Built-in Functions of JavaScript</h3>
+            <p>Essential knowledge for front-end technical interviews:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Reserved Keywords:</strong> Words reserved by JavaScript syntax that cannot be used as variable names (e.g. <code>function</code>, <code>class</code>, <code>return</code>, <code>this</code>, <code>typeof</code>, <code>instanceof</code>, <code>async</code>, <code>await</code>, <code>try</code>, <code>catch</code>, <code>const</code>, <code>let</code>, <code>var</code>, <code>new</code>, <code>super</code>).</li>
+                <li><strong>Built-in Global Functions:</strong> Functions available on the global scope (e.g. <code>parseInt()</code>, <code>parseFloat()</code>, <code>isNaN()</code>, <code>isFinite()</code>, <code>encodeURI()</code>, <code>decodeURI()</code>).</li>
+                <li><strong>Standard Built-in Objects:</strong> Native standard objects providing utility methods:
+                    <ul>
+                        <li><code>Math</code> (e.g. <code>Math.max()</code>, <code>Math.random()</code>, <code>Math.floor()</code>)</li>
+                        <li><code>Date</code> (e.g. <code>Date.now()</code>, <code>toISOString()</code>)</li>
+                        <li><code>JSON</code> (e.g. <code>JSON.stringify()</code>, <code>JSON.parse()</code>)</li>
+                        <li><code>Array</code> (e.g. <code>map()</code>, <code>filter()</code>, <code>reduce()</code>, <code>sort()</code>)</li>
+                        <li><code>Object</code> (e.g. <code>Object.keys()</code>, <code>Object.assign()</code>, <code>Object.freeze()</code>)</li>
+                    </ul>
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

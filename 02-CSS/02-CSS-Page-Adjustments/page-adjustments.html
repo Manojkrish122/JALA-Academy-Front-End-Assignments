@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - CSS Page Adjustments Assignment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="pageBody">
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <!-- Top Landmark for smooth scroll (Question 3) -->
+    <div id="topLandmark"></div>
+
+    <div class="wrapper">
+        
+        <header class="card">
+            <h1>CSS Page Adjustments Showcase</h1>
+            <p>Demonstrating table hover page color shift, visibility vs display properties, smooth scrolling links, padding vs margin box-model, and multiple background images.</p>
+            
+            <!-- Question 3: Link to go to bottom of page -->
+            <div class="scroll-actions">
+                <a href="#bottomLandmark" class="scroll-btn">⬇ Click to go to bottom of page (Smooth Scroll)</a>
+            </div>
+        </header>
+
+        <!-- Question 1: Table with black border and hover page color change -->
+        <section class="card">
+            <h2>1. Table Hover Page Color Shift</h2>
+            <p>Hover over the table below. Notice that hovering on this table smoothly transitions the entire page background color!</p>
+            
+            <div class="table-hover-wrapper">
+                <table class="black-border-table" id="interactiveTable">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Learner Name</th>
+                            <th>Specialization</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JALA-101</td>
+                            <td>Aarav Sharma</td>
+                            <td>Full Stack Java & UI</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>JALA-102</td>
+                            <td>Diya Patel</td>
+                            <td>Front-End Engineering</td>
+                            <td>Interview Ready</td>
+                        </tr>
+                        <tr>
+                            <td>JALA-103</td>
+                            <td>Rohan Kumar</td>
+                            <td>React & Modern UI</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="note"><strong>Technique:</strong> Implemented with CSS <code>:hover</code> state and smooth background color transition.</p>
+        </section>
+
+        <!-- Question 2: Visibility vs Display -->
+        <section class="card">
+            <h2>2. Visibility (hidden, visible, collapse) vs Display (none, inline, block, contents, list-item)</h2>
+            <p>Inspect the visual space occupied by each property:</p>
+            
+            <div class="display-demo-grid">
+                
+                <!-- Visibility demonstration -->
+                <div class="demo-box">
+                    <h3>A. Visibility Demonstration</h3>
+                    <div class="vis-container">
+                        <div class="box box-primary">Box 1 (visible)</div>
+                        <div class="box box-hidden">Box 2 (visibility: hidden)<br><small>Space is preserved!</small></div>
+                        <div class="box box-primary">Box 3 (visible)</div>
+                    </div>
+                </div>
+
+                <!-- Display demonstration -->
+                <div class="demo-box">
+                    <h3>B. Display: none vs block vs inline</h3>
+                    <div class="display-container">
+                        <div class="box box-primary">Box A (display: block)</div>
+                        <div class="box box-none">Box B (display: none - 0 space taken)</div>
+                        <span class="inline-tag">Item C (inline)</span>
+                        <span class="inline-tag">Item D (inline)</span>
+                        <div class="box-contents-wrapper">
+                            <span class="box-contents-child">display: contents child</span>
+                        </div>
+                        <div class="box-list-item">display: list-item</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Question 4: Padding vs Margin Box-Model Demo -->
+        <section class="card">
+            <h2>4. Padding vs Margin Visual Comparison</h2>
+            <p>Understanding internal breathing space (padding) vs external separation (margin):</p>
+            
+            <div class="margin-padding-stage">
+                <div class="outer-margin-visual">
+                    <span class="badge-label margin-badge">Orange Area = Margin (40px outside border)</span>
+                    <div class="box-border-visual">
+                        <span class="badge-label border-badge">Solid Blue Line = Border (4px)</span>
+                        <div class="inner-padding-visual">
+                            <span class="badge-label padding-badge">Green Area = Padding (30px inside border)</span>
+                            <div class="actual-content">
+                                <strong>Core Content Box</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 5: Multiple Background Images with Adjustable Sizes -->
+        <section class="card">
+            <h2>5. Multiple Background Images with Adjustable Sizes</h2>
+            <p>This container layers two distinct background images simultaneously with independent position and sizing:</p>
+            
+            <div class="multi-bg-box">
+                <div class="multi-bg-content">
+                    <h3>Layered Background Canvas</h3>
+                    <p>CSS Property: <code>background-image: radial-gradient(...), linear-gradient(...);</code> and layered SVG patterns with adjustable percentage sizing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 3: Link to return to top of page -->
+        <div class="scroll-actions" style="margin: 30px 0;">
+            <a href="#topLandmark" class="scroll-btn">⬆ Click to go to top of page (Smooth Scroll)</a>
+        </div>
+
+        <!-- Things to know & interview prep -->
+        <footer class="card interview-info">
+            <h3>Things to Know (CSS Page Adjustments)</h3>
+            <ol>
+                <li><strong>Difference between visibility:hidden and display:none:</strong>
+                    <code>visibility: hidden</code> hides the element visually, but the element still takes up layout space and affects the page flow. <code>display: none</code> removes the element completely from document layout flow as if it never existed (takes 0px space).
+                </li>
+                <li><strong>Difference between inline and block-level elements:</strong>
+                    Block elements (e.g. <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>) start on a new line and expand to full width. Inline elements (e.g. <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>) flow within lines and ignore vertical margin/height.
+                </li>
+                <li><strong>What are selectors?</strong>
+                    CSS Selectors target HTML elements to apply rules (Universal <code>*</code>, Type <code>p</code>, Class <code>.btn</code>, ID <code>#top</code>, Attribute <code>[type="text"]</code>, Pseudo-class <code>:hover</code>).
+                </li>
+                <li><strong>Which property is used to set the line style for the outline?</strong>
+                    The property is <code>outline-style</code> (options: <code>solid</code>, <code>dashed</code>, <code>dotted</code>, <code>double</code>, <code>groove</code>, etc.).
+                </li>
+            </ol>
+        </footer>
+
+        <!-- Bottom Landmark (Question 3) -->
+        <div id="bottomLandmark"></div>
+
+    </div>
+
+    <!-- Script to assist dynamic body color change when table is hovered -->
+    <script>
+        const table = document.getElementById('interactiveTable');
+        const body = document.getElementById('pageBody');
+        table.addEventListener('mouseenter', () => {
+            body.classList.add('table-hovered');
+        });
+        table.addEventListener('mouseleave', () => {
+            body.classList.remove('table-hovered');
+        });
+    </script>
+
+</body>
+</html>
+

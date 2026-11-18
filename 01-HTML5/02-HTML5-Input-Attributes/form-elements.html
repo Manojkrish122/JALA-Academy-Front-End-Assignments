@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - HTML5 Input Attributes & Restrictions</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #333; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        h1, h2, h3 { color: #1a365d; margin-bottom: 15px; }
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 15px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-weight: 600; font-size: 0.9rem; color: #2d3748; }
+        .form-group input, .form-group select, .form-group button {
+            padding: 8px 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem;
+        }
+        .form-group input:focus { border-color: #3182ce; outline: none; box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2); }
+        .inline-options { display: flex; gap: 15px; align-items: center; margin-top: 6px; }
+        .inline-options label { font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .btn-row { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-primary { background: #3182ce; color: #fff; }
+        .btn-secondary { background: #718096; color: #fff; }
+        .btn-warning { background: #dd6b20; color: #fff; }
+        .btn:hover { opacity: 0.9; }
+        .badge { display: inline-block; background: #e2e8f0; color: #4a5568; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 5px; }
+        
+        /* Marquee styling & modern CSS ticker */
+        .marquee-box { background: #2b6cb0; color: white; padding: 10px; border-radius: 6px; margin-bottom: 25px; font-weight: 500; }
+        
+        /* IFrame section */
+        .iframe-container { width: 100%; height: 260px; border: 2px dashed #cbd5e0; border-radius: 8px; overflow: hidden; margin-top: 15px; }
+        iframe { width: 100%; height: 100%; border: none; }
+        .links-bar { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+        .link-pill { padding: 6px 14px; background: #ebf8ff; color: #2b6cb0; border-radius: 20px; text-decoration: none; font-weight: 600; border: 1px solid #bee3f8; }
+        .link-pill:hover { background: #3182ce; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="header-section">
+            <h1>HTML5 Input Attributes, Types & Restrictions</h1>
+            <p>Comprehensive assignment covering traditional input types, HTML5 inputs, field restrictions, targets, iframe, and marquee.</p>
+        </header>
+
+        <!-- Question 5: Marquee Element (HTML Tag + Fallback Note) -->
+        <div class="marquee-box">
+            <marquee behavior="scroll" direction="left" scrollamount="6">
+                🚀 Welcome to JALA Academy Front-End Assignment Showcase! Notice: All assignments are designed for professional interview readiness. Explore form validations below!
+            </marquee>
+        </div>
+
+        <!-- Form Container -->
+        <form action="embedded-frame.html" method="GET" target="preview_frame" class="card" id="mainRegistrationForm">
+            
+            <!-- Question 1: Standard Input Attributes -->
+            <h2>1. Standard Input Attributes</h2>
+            <p>Demonstrating <code>text</code>, <code>password</code>, <code>radio</code>, <code>checkbox</code>, <code>button</code>, <code>submit</code>, and <code>reset</code>.</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="username">Username (type="text"):</label>
+                    <input type="text" id="username" name="username" placeholder="e.g. john_doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userpass">Password (type="password"):</label>
+                    <input type="password" id="userpass" name="userpass" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender (type="radio"):</label>
+                    <div class="inline-options">
+                        <label><input type="radio" name="gender" value="male" checked> Male</label>
+                        <label><input type="radio" name="gender" value="female"> Female</label>
+                        <label><input type="radio" name="gender" value="other"> Other</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Interests (type="checkbox"):</label>
+                    <div class="inline-options">
+                        <label><input type="checkbox" name="interest" value="frontend" checked> Front-End</label>
+                        <label><input type="checkbox" name="interest" value="backend"> Back-End</label>
+                        <label><input type="checkbox" name="interest" value="cloud"> Cloud</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+            <!-- Question 2: HTML5 Input Types -->
+            <h2>2. Modern HTML5 Input Types</h2>
+            <p>Demonstrating <code>number</code>, <code>range</code>, <code>color</code>, <code>date</code>, <code>file</code>, <code>time</code>, <code>month</code>, <code>week</code>, and <code>email</code>.</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="userAge">Age (type="number"):</label>
+                    <input type="number" id="userAge" name="age" min="18" max="65" value="24">
+                </div>
+
+                <div class="form-group">
+                    <label for="satisfaction">Experience Rating (type="range" 1-10):</label>
+                    <input type="range" id="satisfaction" name="rating" min="1" max="10" value="8" 
+                           oninput="ratingOutput.value = satisfaction.value">
+                    <span style="font-size:0.85rem; color:#718096;">Current Value: <output id="ratingOutput">8</output> / 10</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="themeColor">Favorite Color (type="color"):</label>
+                    <input type="color" id="themeColor" name="favColor" value="#3182ce" style="height: 42px; cursor: pointer;">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Birth Date (type="date"):</label>
+                    <input type="date" id="birthDate" name="birthDate" value="2000-01-15">
+                </div>
+
+                <div class="form-group">
+                    <label for="resumeUpload">Upload Resume (type="file"):</label>
+                    <input type="file" id="resumeUpload" name="resume" accept=".pdf,.doc,.docx">
+                </div>
+
+                <div class="form-group">
+                    <label for="interviewTime">Preferred Time (type="time"):</label>
+                    <input type="time" id="interviewTime" name="time" value="10:30">
+                </div>
+
+                <div class="form-group">
+                    <label for="gradMonth">Graduation Month (type="month"):</label>
+                    <input type="month" id="gradMonth" name="gradMonth" value="2024-05">
+                </div>
+
+                <div class="form-group">
+                    <label for="projectWeek">Project Start Week (type="week"):</label>
+                    <input type="week" id="projectWeek" name="projectWeek" value="2026-W45">
+                </div>
+
+                <div class="form-group">
+                    <label for="userEmail">Official Email (type="email"):</label>
+                    <input type="email" id="userEmail" name="email" placeholder="student@example.com" required>
+                </div>
+            </div>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+            <!-- Question 3: Input Restrictions -->
+            <h2>3. HTML5 Input Restrictions</h2>
+            <p>Demonstrating: <code>disabled</code>, <code>readonly</code>, <code>required</code>, <code>size</code>, <code>value</code>, <code>min</code>, <code>max</code>, and <code>maxlength</code>.</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <span class="badge">Restriction: disabled</span>
+                    <label for="systemId">System ID (disabled):</label>
+                    <input type="text" id="systemId" value="SYS-99824" disabled>
+                </div>
+
+                <div class="form-group">
+                    <span class="badge">Restriction: readonly & value</span>
+                    <label for="country">Country (readonly):</label>
+                    <input type="text" id="country" name="country" value="India" readonly>
+                </div>
+
+                <div class="form-group">
+                    <span class="badge">Restriction: maxlength="10" & size="15"</span>
+                    <label for="mobileNo">Mobile Number (max 10 chars):</label>
+                    <input type="text" id="mobileNo" name="mobile" maxlength="10" size="15" placeholder="10 Digits Only">
+                </div>
+
+                <div class="form-group">
+                    <span class="badge">Restriction: min="1" & max="5" & required</span>
+                    <label for="yearsExp">Years of Experience (min 1, max 5):</label>
+                    <input type="number" id="yearsExp" name="yearsExp" min="1" max="5" value="2" required>
+                </div>
+            </div>
+
+            <!-- Buttons: submit, reset, standard button -->
+            <div class="btn-row">
+                <input type="submit" value="Submit Form (target='preview_frame')" class="btn btn-primary">
+                <input type="reset" value="Reset Fields (type='reset')" class="btn btn-secondary">
+                <input type="button" value="Custom Alert Button (type='button')" class="btn btn-warning" onclick="alert('HTML type=button clicked!')">
+            </div>
+
+        </form>
+
+        <!-- Question 4 & 5: Target Attribute & I-Frames -->
+        <section class="card">
+            <h2>4 & 5. Target Attribute & Iframe Display</h2>
+            <p>
+                The <code>target</code> attribute determines where linked documents or submitted form results will open.
+            </p>
+            <div class="links-bar">
+                <!-- target="_blank" -->
+                <a href="embedded-frame.html?mode=blank" target="_blank" class="link-pill">Open in New Tab (target="_blank")</a>
+                <!-- target="_self" -->
+                <a href="form-elements.html" target="_self" class="link-pill">Reload Current Page (target="_self")</a>
+                <!-- target directing into iframe -->
+                <a href="embedded-frame.html?source=demo-link" target="preview_frame" class="link-pill">Load Into Iframe (target="preview_frame")</a>
+            </div>
+
+            <div class="iframe-container">
+                <iframe name="preview_frame" src="embedded-frame.html" title="Embedded Target Preview Frame"></iframe>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
+

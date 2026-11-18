@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - Front-End UI Technologies Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-card: #243046;
+            --border: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-html: #ea580c;
+            --accent-css: #0284c7;
+            --accent-js: #eab308;
+            --accent-ng: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Top Hero Header */
+        header.hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 50px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.4);
+            border-radius: 30px;
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #ffffff, #93c5fd, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Stats Bar */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 14px 24px;
+            border-radius: 12px;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Filter Controls */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 10px 16px 10px 38px;
+            border-radius: 25px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Category Section Header */
+        .track-section {
+            margin-bottom: 45px;
+        }
+
+        .track-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .track-icon {
+            font-size: 1.5rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .icon-html { background: rgba(234, 88, 12, 0.15); color: var(--accent-html); }
+        .icon-css { background: rgba(2, 132, 199, 0.15); color: var(--accent-css); }
+        .icon-js { background: rgba(234, 179, 8, 0.15); color: var(--accent-js); }
+        .icon-ng { background: rgba(220, 38, 38, 0.15); color: var(--accent-ng); }
+
+        .track-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 22px;
+        }
+
+        .assignment-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-4px);
+            border-color: #60a5fa;
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-top {
+            margin-bottom: 16px;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .tag-html { color: var(--accent-html); }
+        .tag-css { color: var(--accent-css); }
+        .tag-js { color: var(--accent-js); }
+        .tag-ng { color: var(--accent-ng); }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .topics-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .topic-pill {
+            background: var(--surface-card);
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid #334155;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
+        .btn-launch {
+            flex: 1.2;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-launch:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-preview {
+            background: #0284c7;
+            color: white;
+            text-decoration: none;
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-preview:hover {
+            background: #0369a1;
+        }
+
+        .btn-doc {
+            background: var(--surface-card);
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 9px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-doc:hover {
+            background: #334155;
+            color: #38bdf8;
+        }
+
+        /* Documentation & Quick Start Card */
+        .docs-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .docs-banner h3 {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            margin-bottom: 6px;
+        }
+
+        .docs-banner p {
+            color: var(--text-muted);
+            max-width: 680px;
+        }
+
+        .btn-prep {
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-prep:hover {
+            background: #16a34a;
+        }
+
+        /* Modal Live Preview Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 95%;
+            max-width: 1100px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-header {
+            background: #0f172a;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .device-toggles {
+            display: flex;
+            gap: 8px;
+            background: var(--surface);
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .device-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .device-btn.active, .device-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-close-modal {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-close-modal:hover {
+            background: #dc2626;
+        }
+
+        .modal-iframe-wrapper {
+            flex: 1;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 35px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-certificate"></i> JALA Academy Front-End Assignment Showcase
+        </div>
+        <h1 class="hero-title">Front-End UI Technologies Portfolio</h1>
+        <p class="hero-subtitle">
+            Complete, production-grade solutions for all 15 UI assignments covering HTML5, CSS3, JavaScript ES6+, and AngularJS. Designed for 100% technical interview readiness.
+        </p>
+
+        <!-- Stats Counter Bar -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">15 / 15</div>
+                <div class="stat-label">Assignments Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Technology Tracks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Working Demos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Interview Q&As</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Controls & Filters -->
+        <div class="controls-bar">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterTrack('all', this)">All Assignments (15)</button>
+                <button class="filter-btn" onclick="filterTrack('html', this)">HTML5 (3)</button>
+                <button class="filter-btn" onclick="filterTrack('css', this)">CSS3 (4)</button>
+                <button class="filter-btn" onclick="filterTrack('js', this)">JavaScript (3)</button>
+                <button class="filter-btn" onclick="filterTrack('ng', this)">AngularJS (5)</button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search assignments..." oninput="searchAssignments()">
+            </div>
+        </div>
+
+        <!-- Comprehensive Interview Guide Banner -->
+        <div class="docs-banner">
+            <div>
+                <h3><i class="fas fa-graduation-cap"></i> Master Interview Preparation Guide</h3>
+                <p>Read detailed answers, key concepts, and presentation points for every "Good to know" and "Things to know" item from all 15 assignment PDFs.</p>
+            </div>
+            <a href="INTERVIEW_PREP.md" class="btn-prep">
+                <i class="fas fa-book-open"></i> Read INTERVIEW_PREP.md
+            </a>
+        </div>
+
+        <!-- ===================================================================
+             1. HTML5 SECTION
+             =================================================================== -->
+        <section class="track-section" data-track="html">
+            <div class="track-header">
+                <div class="track-icon icon-html"><i class="fab fa-html5"></i></div>
+                <div>
+                    <h2 class="track-title">1. HTML5 Technologies (3 Assignments)</h2>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Card 1: HTML5 Basics -->
+                <div class="assignment-card" data-title="HTML5 Basics Anchor Tags Pseudo Elements">
+                    <div class="card-top">
+                        <span class="card-tag tag-html">HTML5 Assignment 1</span>
+                        <h3 class="card-title">HTML5 Basics & Navigation</h3>
+                        <p class="card-desc">Complete tag hierarchy, intra-page bookmark navigation, drop-cap styling, and CSS pseudo-classes & pseudo-elements.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Headings (h1-h6)</span>
+                            <span class="topic-pill">Blockquote</span>
+                            <span class="topic-pill">div vs span</span>
+                            <span class="topic-pill">:hover / :active</span>
+                            <span class="topic-pill">::first-letter</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('01-HTML5/01-HTML5-Basics/basics.html', 'HTML5 Basics & Navigation')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="01-HTML5/01-HTML5-Basics/basics.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="01-HTML5/01-HTML5-Basics/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: HTML5 Input Attributes -->
+                <div class="assignment-card" data-title="HTML5 Input Attributes Types Restrictions Iframe Marquee">
+                    <div class="card-top">
+                        <span class="card-tag tag-html">HTML5 Assignment 2</span>
+                        <h3 class="card-title">Input Attributes & Restrictions</h3>
+                        <p class="card-desc">Comprehensive form input types (date, color, range), validation restrictions (readonly, disabled), iframes, and marquee.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Input Types</span>
+                            <span class="topic-pill">Restrictions</span>
+                            <span class="topic-pill">target="_blank"</span>
+                            <span class="topic-pill">&lt;iframe&gt;</span>
+                            <span class="topic-pill">&lt;marquee&gt;</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('01-HTML5/02-HTML5-Input-Attributes/form-elements.html', 'HTML5 Input Attributes & Restrictions')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="01-HTML5/02-HTML5-Input-Attributes/form-elements.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="01-HTML5/02-HTML5-Input-Attributes/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: HTML5 Semantic Elements -->
+                <div class="assignment-card" data-title="HTML5 Semantic Elements Article Aside Figure Nav Section">
+                    <div class="card-top">
+                        <span class="card-tag tag-html">HTML5 Assignment 3</span>
+                        <h3 class="card-title">Semantic Elements & Outline</h3>
+                        <p class="card-desc">Document outline with article, aside, figcaption, figure, footer, header, hgroup, mark, nav, section, and time.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">&lt;article&gt;</span>
+                            <span class="topic-pill">&lt;aside&gt;</span>
+                            <span class="topic-pill">&lt;figure&gt;</span>
+                            <span class="topic-pill">&lt;nav&gt;</span>
+                            <span class="topic-pill">HTML4 vs HTML5</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('01-HTML5/03-HTML5-Semantic-Elements/semantics.html', 'HTML5 Semantic Elements & Structure')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="01-HTML5/03-HTML5-Semantic-Elements/semantics.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="01-HTML5/03-HTML5-Semantic-Elements/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             2. CSS SECTION
+             =================================================================== -->
+        <section class="track-section" data-track="css">
+            <div class="track-header">
+                <div class="track-icon icon-css"><i class="fab fa-css3-alt"></i></div>
+                <div>
+                    <h2 class="track-title">2. Cascading Style Sheets (CSS3 - 4 Assignments)</h2>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Card 4: CSS Basics -->
+                <div class="assignment-card" data-title="CSS Basics Background Fixed Border Dimensions Typography">
+                    <div class="card-top">
+                        <span class="card-tag tag-css">CSS Assignment 1</span>
+                        <h3 class="card-title">CSS Basics & Typography</h3>
+                        <p class="card-desc">CSS comment syntax, fixed background images, 4 multi-pattern borders, pixel vs percentage dimensions, and typography.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Fixed Background</span>
+                            <span class="topic-pill">4 Border Styles</span>
+                            <span class="topic-pill">px vs %</span>
+                            <span class="topic-pill">Typography</span>
+                            <span class="topic-pill">DOCTYPE</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('02-CSS/01-CSS-Basics/css-basics.html', 'CSS Basics & Typography')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="02-CSS/01-CSS-Basics/css-basics.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="02-CSS/01-CSS-Basics/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 5: CSS Page Adjustments -->
+                <div class="assignment-card" data-title="CSS Page Adjustments Table Hover Visibility Display Margin Padding">
+                    <div class="card-top">
+                        <span class="card-tag tag-css">CSS Assignment 2</span>
+                        <h3 class="card-title">Page Adjustments & Box Model</h3>
+                        <p class="card-desc">Table hover page color shifts, visibility vs display comparisons, smooth scrolling links, and multi-image backgrounds.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Table Hover</span>
+                            <span class="topic-pill">visibility:hidden</span>
+                            <span class="topic-pill">display:none</span>
+                            <span class="topic-pill">Padding vs Margin</span>
+                            <span class="topic-pill">Multi Backgrounds</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('02-CSS/02-CSS-Page-Adjustments/page-adjustments.html', 'CSS Page Adjustments & Box Model')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="02-CSS/02-CSS-Page-Adjustments/page-adjustments.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="02-CSS/02-CSS-Page-Adjustments/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 6: CSS Effects -->
+                <div class="assignment-card" data-title="CSS Effects Shadows Keyframe Animations Pagination Positions Opacity">
+                    <div class="card-top">
+                        <span class="card-tag tag-css">CSS Assignment 3</span>
+                        <h3 class="card-title">CSS Effects & Animations</h3>
+                        <p class="card-desc">Box & text shadows with hover transitions, @keyframes animations, pagination styles, position coordinates, and image opacity.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">box-shadow</span>
+                            <span class="topic-pill">@keyframes</span>
+                            <span class="topic-pill">Paginations</span>
+                            <span class="topic-pill">relative / fixed / sticky</span>
+                            <span class="topic-pill">Overflow Scroll</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('02-CSS/03-CSS-Effects/css-effects.html', 'CSS Effects & Animations')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="02-CSS/03-CSS-Effects/css-effects.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="02-CSS/03-CSS-Effects/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 7: CSS Compatibility -->
+                <div class="assignment-card" data-title="CSS Compatibility Table Fixed Grid Hero Media Queries Video">
+                    <div class="card-top">
+                        <span class="card-tag tag-css">CSS Assignment 4</span>
+                        <h3 class="card-title">Grid & Responsive Layouts</h3>
+                        <p class="card-desc">Table-layout fixed vs auto, custom list-style-types, responsive CSS Grid auto-fit, hero image overlays, and responsive video.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">table-layout:fixed</span>
+                            <span class="topic-pill">CSS Grid</span>
+                            <span class="topic-pill">Hero Banner</span>
+                            <span class="topic-pill">Media Queries</span>
+                            <span class="topic-pill">16:9 Video</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('02-CSS/04-CSS-Compatibility/css-compatibility.html', 'CSS Compatibility & Grid Layouts')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="02-CSS/04-CSS-Compatibility/css-compatibility.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="02-CSS/04-CSS-Compatibility/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             3. JAVASCRIPT SECTION
+             =================================================================== -->
+        <section class="track-section" data-track="js">
+            <div class="track-header">
+                <div class="track-icon icon-js"><i class="fab fa-js-square"></i></div>
+                <div>
+                    <h2 class="track-title">3. JavaScript ES6+ (3 Assignments)</h2>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Card 8: JS Basics -->
+                <div class="assignment-card" data-title="JavaScript Basics Array Sorting For In Hoisting Strict Mode">
+                    <div class="card-top">
+                        <span class="card-tag tag-js">JavaScript Assignment 1</span>
+                        <h3 class="card-title">JavaScript Fundamentals</h3>
+                        <p class="card-desc">Single/multi-line comments, array descending sorting, for...in object iteration, dot vs bracket property access, hoisting, and strict mode.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Array.sort().reverse()</span>
+                            <span class="topic-pill">for...in loop</span>
+                            <span class="topic-pill">Dot vs Bracket</span>
+                            <span class="topic-pill">Variable Hoisting</span>
+                            <span class="topic-pill">"use strict"</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('03-JavaScript/01-JavaScript-Basics/js-basics.html', 'JavaScript Language Fundamentals')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="03-JavaScript/01-JavaScript-Basics/js-basics.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="03-JavaScript/01-JavaScript-Basics/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 9: JS Access and Properties -->
+                <div class="assignment-card" data-title="JavaScript Access Properties this call apply Counter Getter Setter Prototype">
+                    <div class="card-top">
+                        <span class="card-tag tag-js">JavaScript Assignment 2</span>
+                        <h3 class="card-title">Access, Execution & Prototypes</h3>
+                        <p class="card-desc">The 'this' keyword element dismissal, call() vs apply() argument differences, click counters, get/set accessors, and prototypes.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">this keyword</span>
+                            <span class="topic-pill">call() vs apply()</span>
+                            <span class="topic-pill">Counter</span>
+                            <span class="topic-pill">Getter & Setter</span>
+                            <span class="topic-pill">Prototypes</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('03-JavaScript/02-JavaScript-Access-and-Properties/access-properties.html', 'JavaScript Access & Properties')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="03-JavaScript/02-JavaScript-Access-and-Properties/access-properties.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="03-JavaScript/02-JavaScript-Access-and-Properties/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 10: JS Events -->
+                <div class="assignment-card" data-title="JavaScript Events addEventListener Form Validation Debugging Cookies JSON">
+                    <div class="card-top">
+                        <span class="card-tag tag-js">JavaScript Assignment 3</span>
+                        <h3 class="card-title">DOM Events, Cookies & Debugging</h3>
+                        <p class="card-desc">addEventListener date/time display, form validation prevention, console debugging suite, set/get/check cookies, and JSON traversal.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">addEventListener</span>
+                            <span class="topic-pill">Form Validation</span>
+                            <span class="topic-pill">console.table()</span>
+                            <span class="topic-pill">Cookies (Set/Get)</span>
+                            <span class="topic-pill">JSON Parsing</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('03-JavaScript/03-JavaScript-Events/js-events.html', 'JavaScript Events, Validation & Cookies')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="03-JavaScript/03-JavaScript-Events/js-events.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="03-JavaScript/03-JavaScript-Events/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             4. ANGULARJS SECTION
+             =================================================================== -->
+        <section class="track-section" data-track="ng">
+            <div class="track-header">
+                <div class="track-icon icon-ng"><i class="fab fa-angular"></i></div>
+                <div>
+                    <h2 class="track-title">4. AngularJS Framework (5 Assignments)</h2>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- Card 11: AngularJS Basics -->
+                <div class="assignment-card" data-title="AngularJS Basics Expressions Directives Modules Scope RootScope">
+                    <div class="card-top">
+                        <span class="card-tag tag-ng">AngularJS Assignment 1</span>
+                        <h3 class="card-title">AngularJS Basics & Directives</h3>
+                        <p class="card-desc">Expression evaluation {{ }}, dynamic color textbox, external modules/directives/controllers, ng-model, ng-repeat, and $scope hierarchy.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">{{ expressions }}</span>
+                            <span class="topic-pill">ng-model</span>
+                            <span class="topic-pill">ng-repeat</span>
+                            <span class="topic-pill">External Directives</span>
+                            <span class="topic-pill">$scope vs $rootScope</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('04-AngularJS/01-AngularJS-Basics/angular-basics.html', 'AngularJS Basics & Directives')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="04-AngularJS/01-AngularJS-Basics/angular-basics.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="04-AngularJS/01-AngularJS-Basics/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 12: AngularJS Filters -->
+                <div class="assignment-card" data-title="AngularJS Filters Services Location Http Timeout Global API">
+                    <div class="card-top">
+                        <span class="card-tag tag-ng">AngularJS Assignment 2</span>
+                        <h3 class="card-title">Filters, Services & APIs</h3>
+                        <p class="card-desc">Built-in filters, custom string filters, built-in services ($location, $timeout), custom calculation service, and $http response handling.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Filters</span>
+                            <span class="topic-pill">Custom Service</span>
+                            <span class="topic-pill">$http.get() / post()</span>
+                            <span class="topic-pill">.status & .data</span>
+                            <span class="topic-pill">angular.lowercase</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('04-AngularJS/02-AngularJS-Filters/angular-filters.html', 'AngularJS Filters & Services')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="04-AngularJS/02-AngularJS-Filters/angular-filters.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="04-AngularJS/02-AngularJS-Filters/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 13: AngularJS JSON -->
+                <div class="assignment-card" data-title="AngularJS JSON Tables Sorting Index Odd Even ng-options ng-repeat">
+                    <div class="card-top">
+                        <span class="card-tag tag-ng">AngularJS Assignment 3</span>
+                        <h3 class="card-title">JSON Data & Options Binding</h3>
+                        <p class="card-desc">JSON table population, orderBy filter sorting, zebra striping with $odd/$even, and ng-options object binding vs ng-repeat strings.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">JSON Ingestion</span>
+                            <span class="topic-pill">orderBy Filter</span>
+                            <span class="topic-pill">$odd & $even</span>
+                            <span class="topic-pill">ng-options</span>
+                            <span class="topic-pill">ng-repeat</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('04-AngularJS/03-AngularJS-JSON/angular-json.html', 'AngularJS JSON Tables & Options')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="04-AngularJS/03-AngularJS-JSON/angular-json.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="04-AngularJS/03-AngularJS-JSON/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 14: AngularJS Events -->
+                <div class="assignment-card" data-title="AngularJS Events MySQL DOM ng-show ng-hide ng-disabled ng-click mousemove">
+                    <div class="card-top">
+                        <span class="card-tag tag-ng">AngularJS Assignment 4</span>
+                        <h3 class="card-title">MySQL Ingestion & DOM Events</h3>
+                        <p class="card-desc">MySQL database API ingestion pipeline, Document Object Model (DOM), ng-show, ng-hide, ng-disabled, and $event mouse tracking.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">MySQL Integration</span>
+                            <span class="topic-pill">DOM Concepts</span>
+                            <span class="topic-pill">ng-show / ng-hide</span>
+                            <span class="topic-pill">ng-disabled</span>
+                            <span class="topic-pill">$event Coordinates</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('04-AngularJS/04-AngularJS-Events/angular-events.html', 'AngularJS Events & MySQL Pipeline')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="04-AngularJS/04-AngularJS-Events/angular-events.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="04-AngularJS/04-AngularJS-Events/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+                <!-- Card 15: AngularJS Validations & Routing -->
+                <div class="assignment-card" data-title="AngularJS Validations Routing ngRoute Forms Animations ngAnimate">
+                    <div class="card-top">
+                        <span class="card-tag tag-ng">AngularJS Assignment 5</span>
+                        <h3 class="card-title">Validations, Animations & SPA Routing</h3>
+                        <p class="card-desc">All form controls, native and custom mobile validators, CSS transitions with ngAnimate, and SPA routing via ngRoute and $routeProvider.</p>
+                        <div class="topics-list">
+                            <span class="topic-pill">Form Elements</span>
+                            <span class="topic-pill">Custom Validator</span>
+                            <span class="topic-pill">ngAnimate</span>
+                            <span class="topic-pill">ngRoute</span>
+                            <span class="topic-pill">otherwise()</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-preview" onclick="openPreview('04-AngularJS/05-AngularJS-Elements-and-Validations/angular-validations.html', 'AngularJS Validations & Routing')"><i class="fas fa-eye"></i> Preview</button>
+                        <a href="04-AngularJS/05-AngularJS-Elements-and-Validations/angular-validations.html" target="_blank" class="btn-launch"><i class="fas fa-external-link-alt"></i> New Tab</a>
+                        <a href="04-AngularJS/05-AngularJS-Elements-and-Validations/README.md" class="btn-doc"><i class="fas fa-file-alt"></i> Notes</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Live Preview Modal -->
+    <div class="modal-overlay" id="previewModal" onclick="closePreviewIfBackdrop(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">
+                    <i class="fas fa-laptop-code"></i> Live Preview
+                </div>
+                
+                <!-- Device Emulation Controls -->
+                <div class="device-toggles">
+                    <button class="device-btn active" onclick="setDeviceMode('100%', this)"><i class="fas fa-desktop"></i> Desktop</button>
+                    <button class="device-btn" onclick="setDeviceMode('768px', this)"><i class="fas fa-tablet-alt"></i> Tablet</button>
+                    <button class="device-btn" onclick="setDeviceMode('420px', this)"><i class="fas fa-mobile-alt"></i> Mobile</button>
+                </div>
+
+                <div class="modal-actions">
+                    <a id="modalExternalLink" href="#" target="_blank" class="btn-doc" title="Open in dedicated tab">
+                        <i class="fas fa-external-link-alt"></i> New Tab
+                    </a>
+                    <button class="btn-close-modal" onclick="closePreview()">✕ Close</button>
+                </div>
+            </div>
+
+            <div class="modal-iframe-wrapper">
+                <iframe id="previewIframe" class="preview-iframe" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 JALA Academy Placement Portfolio | Prepared for Technical Interviews & Public GitHub / Bitbucket Repository</p>
+        <p style="margin-top: 6px;">Reference: <a href="https://brightitcareer.com/" target="_blank">Bright IT Career</a> &bull; <a href="https://github.com/JALA-Academy" target="_blank">JALA Academy GitHub</a></p>
+    </footer>
+
+    <!-- Interactive Filtering, Search & Modal Script -->
+    <script>
+        function filterTrack(track, el) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+
+            const sections = document.querySelectorAll('.track-section');
+            sections.forEach(section => {
+                if (track === 'all' || section.getAttribute('data-track') === track) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        function searchAssignments() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.assignment-card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const content = card.innerText.toLowerCase();
+                if (title.includes(query) || content.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openPreview(url, title) {
+            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-laptop-code"></i> Live Preview: <strong>${title}</strong>`;
+            document.getElementById('modalExternalLink').href = url;
+            const iframe = document.getElementById('previewIframe');
+            iframe.src = url;
+            document.getElementById('previewModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+            document.getElementById('previewIframe').src = 'about:blank';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closePreviewIfBackdrop(e) {
+            if (e.target.id === 'previewModal') {
+                closePreview();
+            }
+        }
+
+        function setDeviceMode(width, el) {
+            document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('previewIframe').style.width = width;
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePreview();
+        });
+    </script>
+
+</body>
+</html>

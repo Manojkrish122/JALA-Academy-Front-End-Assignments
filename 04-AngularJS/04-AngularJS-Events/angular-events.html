@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventsApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - AngularJS Events, DOM & MySQL Assignment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #e0e7ff; }
+        .btn { padding: 9px 18px; background: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover:not(:disabled) { background: #4338ca; }
+        .btn:disabled { background: #cbd5e1; cursor: not-allowed; color: #64748b; }
+        .btn-toggle { background: #0284c7; }
+        .btn-toggle:hover { background: #0369a1; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .data-table th, .data-table td { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: left; }
+        .data-table th { background-color: #f1f5f9; color: #0f172a; }
+        .output-box { margin-top: 12px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border-left: 4px solid #4f46e5; white-space: pre-wrap; }
+        .canvas-tracker { height: 160px; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); border: 2px dashed #6366f1; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: crosshair; margin-top: 15px; user-select: none; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #a5b4fc; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        .badge-placed { background: #dcfce7; color: #15803d; }
+        .badge-sched { background: #fef3c7; color: #b45309; }
+        .badge-training { background: #e0f2fe; color: #0369a1; }
+    </style>
+</head>
+<body ng-controller="eventsCtrl">
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>AngularJS Events, DOM Manipulation & MySQL Pipeline</h1>
+            <p>Database integration pipeline (MySQL &rarr; PHP &rarr; AngularJS), Document Object Model (DOM), conditional visibility (<code>ng-show</code>, <code>ng-hide</code>, <code>ng-disabled</code>), and mouse/click events with <code>$event</code>.</p>
+        </header>
+
+        <!-- Question 1: Fetch MySQL Database Table to AngularJS -->
+        <section class="card">
+            <h2>1. Fetch Data from MySQL Database Table to AngularJS</h2>
+            <p>
+                In production full-stack systems, AngularJS communicates with MySQL via a secure REST service layer (e.g. <code>fetch_students.php</code> or Node.js API), protecting database credentials while streaming records asynchronously to the UI:
+            </p>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:10px;">
+                <button class="btn" ng-click="fetchMySQLData()" ng-disabled="isLoadingDb">
+                    {{ isLoadingDb ? 'Querying MySQL...' : '🔄 Refresh Data from MySQL' }}
+                </button>
+                <span style="font-size:0.9rem; color:#475569;">{{ dbStatus }}</span>
+            </div>
+
+            <div style="overflow-x: auto; margin-top: 15px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Course Track</th>
+                            <th>CGPA</th>
+                            <th>Placement Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="st in mysqlStudents">
+                            <td>#{{ st.student_id }}</td>
+                            <td><strong>{{ st.full_name }}</strong></td>
+                            <td>{{ st.email }}</td>
+                            <td>{{ st.course_track }}</td>
+                            <td>{{ st.cgpa }}</td>
+                            <td>
+                                <span class="badge" 
+                                      ng-class="{'badge-placed': st.placement_status === 'Placed', 'badge-sched': st.placement_status === 'Interview Scheduled', 'badge-training': st.placement_status === 'In Training'}">
+                                    {{ st.placement_status }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #64748b;">
+                Schema & Backend files included: <code>database-sample.sql</code> (MySQL DDL) & <code>backend-mock.php</code> (REST API Endpoint).
+            </p>
+        </section>
+
+        <!-- Question 2: What is DOM + ng-show, ng-hide, ng-disabled -->
+        <section class="card">
+            <h2>2. What is DOM? Using ng-show, ng-hide & ng-disabled</h2>
+            
+            <p>
+                The <strong>DOM (Document Object Model)</strong> is the tree-structured programming interface representing the HTML document. AngularJS provides declarative directives to alter DOM element visibility and state:
+            </p>
+
+            <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
+                <button class="btn btn-toggle" ng-click="toggleVisibility()">
+                    Toggle Visibility (Current isVisible: {{ isVisible }})
+                </button>
+                
+                <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer;">
+                    <input type="checkbox" ng-model="isTermsAccepted">
+                    Accept Terms & Conditions (Controls ng-disabled)
+                </label>
+            </div>
+
+            <!-- ng-show demo -->
+            <div ng-show="isVisible" style="background:#ecfdf5; border-left:4px solid #10b981; padding:12px; margin-top:15px; border-radius:4px;">
+                <strong>Visible via ng-show:</strong> This box displays when <code>isVisible === true</code>.
+            </div>
+
+            <!-- ng-hide demo -->
+            <div ng-hide="isVisible" style="background:#fef2f2; border-left:4px solid #ef4444; padding:12px; margin-top:15px; border-radius:4px;">
+                <strong>Visible via ng-hide:</strong> This alert only displays when <code>isVisible === false</code>.
+            </div>
+
+            <!-- ng-disabled demo -->
+            <div style="margin-top: 15px;">
+                <button class="btn" ng-disabled="!isTermsAccepted" ng-click="alert('Form submitted!')">
+                    Submit Candidate Application (ng-disabled: {{ !isTermsAccepted }})
+                </button>
+                <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">
+                    {{ isTermsAccepted ? 'Button Enabled!' : 'Button Disabled until checkbox is checked.' }}
+                </span>
+            </div>
+        </section>
+
+        <!-- Question 3: ng-click, ng-mousemove & $event -->
+        <section class="card">
+            <h2>3. Event Handling: ng-click, ng-mousemove & $event Object</h2>
+            <p>Capturing user mouse movements and clicks using AngularJS event directives and the special <code>$event</code> argument:</p>
+            
+            <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px;">
+                <button class="btn" ng-click="handleButtonClick($event)">
+                    Click Me with $event (Clicked: {{ clickCount }} times)
+                </button>
+            </div>
+
+            <!-- ng-mousemove interactive tracking canvas -->
+            <div class="canvas-tracker" id="trackerBox" ng-mousemove="trackMouseCoordinates($event)">
+                <h3 style="color:#3730a3; margin:0;">Move Your Mouse Over This Box (ng-mousemove)</h3>
+                <p style="color:#4338ca; font-size: 1.1rem; font-weight: bold; margin-top: 6px;">
+                    X: {{ mouseCoordinates.x }} px | Y: {{ mouseCoordinates.y }} px
+                </p>
+                <small style="color: #6366f1;">Target Element: {{ mouseCoordinates.targetElement }}</small>
+            </div>
+
+            <div class="output-box" ng-if="lastClickEvent">
+=== Captured $event Object Details ===
+Event Type:       {{ lastClickEvent.eventType }}
+Clicked Element:  &lt;{{ lastClickEvent.targetTagName }}&gt;
+Screen ClientX:   {{ lastClickEvent.clientX }} px
+Screen ClientY:   {{ lastClickEvent.clientY }} px
+Alt Key Pressed:  {{ lastClickEvent.altKey }}
+Shift Key Pressed:{{ lastClickEvent.shiftKey }}
+            </div>
+        </section>
+
+        <!-- Things to know -->
+        <footer class="card interview-info">
+            <h3>Things to Know: MySQL and Events</h3>
+            <ul>
+                <li><strong>What is MySQL?</strong> MySQL is an open-source Relational Database Management System (RDBMS) that stores structured data into organized tables consisting of rows and columns. It uses Structured Query Language (SQL) for CRUD (Create, Read, Update, Delete) transactions and ensures ACID properties for data integrity.</li>
+                <li><strong>What is an Event?</strong> An event is an action or occurrence that takes place in the browser (e.g. user clicks a button, moves the mouse, presses a key, submits a form, or an image finishes loading). The browser issues an Event Object that can be captured and handled by event listener functions.</li>
+                <li><strong>AngularJS Event Directives:</strong> <code>ng-click</code>, <code>ng-dblclick</code>, <code>ng-mousedown</code>, <code>ng-mouseup</code>, <code>ng-mouseenter</code>, <code>ng-mouseleave</code>, <code>ng-mousemove</code>, <code>ng-keydown</code>, <code>ng-keyup</code>, <code>ng-change</code>, <code>ng-submit</code>.</li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

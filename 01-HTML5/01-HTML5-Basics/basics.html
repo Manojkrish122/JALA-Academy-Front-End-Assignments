@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - HTML5 Basics Assignment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <!-- Header Navigation demonstrating Anchor tags and internal section navigation (Question 3) -->
+    <header class="page-header" id="top">
+        <div class="container">
+            <h1 class="main-title">HTML5 Basics Showcase</h1>
+            <p class="subtitle">Complete implementation of core HTML tags, page bookmark navigation, and CSS pseudo-classes & elements</p>
+            <nav class="nav-bar">
+                <a href="#headings-section" class="nav-link">Headings & Text</a>
+                <a href="#formatting-section" class="nav-link">Formatting & Quotes</a>
+                <a href="#lists-section" class="nav-link">Lists & Structure</a>
+                <a href="#media-section" class="nav-link">Images & Labels</a>
+                <a href="#pseudo-section" class="nav-link">Pseudo Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Section 1: Headings and Paragraphs -->
+        <section id="headings-section" class="card">
+            <h2>1. Heading Tags (h1 through h6) & Paragraphs</h2>
+            <hr>
+            <h1>Heading Level 1 - Main Page Topic</h1>
+            <h2>Heading Level 2 - Major Section Heading</h2>
+            <h3>Heading Level 3 - Sub-section Heading</h3>
+            <h4>Heading Level 4 - Detailed Sub-topic</h4>
+            <h5>Heading Level 5 - Minor Topic Heading</h5>
+            <h6>Heading Level 6 - Smallest Heading Level</h6>
+
+            <p class="sample-paragraph">
+                This is a standard <strong>Paragraph tag</strong> (<code>&lt;p&gt;</code>). Paragraphs are block-level elements that provide natural vertical spacing and flow for textual content.
+            </p>
+            <a href="#top" class="back-to-top">↑ Back to Top</a>
+        </section>
+
+        <!-- Section 2: Text Formatting (Bold, Italic, Span, Division, Blockquote) -->
+        <section id="formatting-section" class="card">
+            <h2>2. Inline Formatting: Bold, Italic, Division, Span & Blockquote</h2>
+            <hr>
+            
+            <p>
+                Here is text styled with <b>Bold tag (&lt;b&gt;)</b> for stylistic boldness, and <strong>Strong tag (&lt;strong&gt;)</strong> for strong semantic importance.
+            </p>
+
+            <p>
+                Here is text styled with <i>Italic tag (&lt;i&gt;)</i> for idiomatic phrasing, and <em>Emphasized tag (&lt;em&gt;)</em> for semantic emphasis.
+            </p>
+
+            <!-- Demonstration of Division and Span -->
+            <div class="div-showcase">
+                <strong>Division Element (<code>&lt;div&gt;</code>):</strong>
+                <p>
+                    A &lt;div&gt; is a block-level container. It starts on a new line and stretches across the full available width of its parent container.
+                    Inside this div, we can highlight individual words using 
+                    <span class="highlight-span">Span Element (&lt;span&gt;)</span>, which is an inline container that does not break into a new line.
+                </p>
+            </div>
+
+            <!-- Blockquote demonstration -->
+            <h3>Blockquote Example:</h3>
+            <blockquote cite="https://brightitcareer.com/">
+                "Learn skills that matter. The secret to mastering web technologies is active practice, creating semantic web layouts, and understanding how HTML, CSS, and JavaScript collaborate seamlessly."
+            </blockquote>
+
+            <a href="#top" class="back-to-top">↑ Back to Top</a>
+        </section>
+
+        <!-- Section 3: Lists and Structural elements -->
+        <section id="lists-section" class="card">
+            <h2>3. Unordered Lists (&lt;ul&gt;), List Items (&lt;li&gt;), and Horizontal Rules (&lt;hr&gt;)</h2>
+            <hr>
+            <p>Essential Front-End Technologies Roadmap:</p>
+            <ul class="styled-list">
+                <li>HTML5 Semantic Architecture & Form Validation</li>
+                <li>CSS3 Flexbox, Grid Layouts, and Smooth Animations</li>
+                <li>JavaScript ES6+, DOM Manipulation, and Event Handling</li>
+                <li>Modern Frameworks (AngularJS, Angular, React)</li>
+                <li>Responsive Web Design & Cross-Browser Compatibility</li>
+            </ul>
+
+            <a href="#top" class="back-to-top">↑ Back to Top</a>
+        </section>
+
+        <!-- Section 4: Media & Form Elements (Image, Label, Input) -->
+        <section id="media-section" class="card">
+            <h2>4. Images (&lt;img&gt;), Labels (&lt;label&gt;) & Interactive Elements</h2>
+            <hr>
+            
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80" 
+                     alt="Modern Web Development Workspace" 
+                     class="sample-image"
+                     width="500">
+                <p class="caption">Figure: Responsive image loaded with semantic <code>alt</code> description.</p>
+            </div>
+
+            <div class="form-group-demo">
+                <label for="studentName" class="sample-label">Candidate Name Label (<code>&lt;label for="studentName"&gt;</code>):</label>
+                <input type="text" id="studentName" class="sample-input" placeholder="Enter your full name">
+            </div>
+
+            <a href="#top" class="back-to-top">↑ Back to Top</a>
+        </section>
+
+        <!-- Section 5: Pseudo-classes and Pseudo-elements (Question 4) -->
+        <section id="pseudo-section" class="card">
+            <h2>5. CSS Pseudo-Classes and Pseudo-Elements Showcase</h2>
+            <hr>
+            
+            <h3>Interactive Pseudo-Classes:</h3>
+            <div class="button-row">
+                <button class="pseudo-btn hover-btn">Hover over me (:hover)</button>
+                <button class="pseudo-btn active-btn">Click and hold me (:active)</button>
+                <input type="text" class="focus-input" placeholder="Click here for (:focus) state">
+            </div>
+
+            <h3>Structural Pseudo-Classes (:first-child, :nth-child(even)):</h3>
+            <ul class="pseudo-list">
+                <li>Item 1 (Styled via <code>:first-child</code>)</li>
+                <li>Item 2 (Even index background via <code>:nth-child(even)</code>)</li>
+                <li>Item 3 (Odd index)</li>
+                <li>Item 4 (Even index background via <code>:nth-child(even)</code>)</li>
+            </ul>
+
+            <h3>Decorative Pseudo-Elements (::first-letter, ::before, ::after, ::selection):</h3>
+            <p class="drop-cap-paragraph">
+                Pseudo-elements allow styling of specific parts of an element without creating extra markup in HTML. Notice how the first letter of this paragraph has a stylish drop-cap created using the <code>::first-letter</code> pseudo-element, and icons before/after links are generated via <code>::before</code> and <code>::after</code>.
+            </p>
+
+            <a href="#top" class="back-to-top">↑ Back to Top</a>
+        </section>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2026 JALA Academy Front-End Assignment Portfolio | Built with Semantic HTML5 & CSS3</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+

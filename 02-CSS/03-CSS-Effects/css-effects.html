@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - CSS Effects Assignment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="wrapper">
+        
+        <header class="card header-card">
+            <h1>CSS Effects Showcase</h1>
+            <p>Comprehensive assignment covering box/text shadows, CSS @keyframes animations, pagination patterns, positioning context, overflow scrolling, and image opacity.</p>
+        </header>
+
+        <!-- Question 1: Shadow Effects for Image Box and Cursor Hover -->
+        <section class="card">
+            <h2>1. Box Shadow & Text Shadow with Hover Effects</h2>
+            <p>Hover cursor over the cards below to observe elevation and glow transitions:</p>
+            
+            <div class="shadow-grid">
+                <div class="shadow-card glow-shadow">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop&q=80" alt="Code on Screen" class="shadow-img">
+                    <h3 class="glow-title">Ambient Soft Glow</h3>
+                    <p>Uses soft spread <code>box-shadow</code> with cursor hover magnification.</p>
+                </div>
+
+                <div class="shadow-card deep-shadow">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&auto=format&fit=crop&q=80" alt="Laptop setup" class="shadow-img">
+                    <h3 class="deep-title">3D Elevation Shadow</h3>
+                    <p>Transforms vertically on hover (<code>transform: translateY(-8px)</code>) with drop shadow.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 2: CSS Keyframes Animation & Pagination Patterns -->
+        <section class="card">
+            <h2>2. CSS Animations & Pagination Varieties</h2>
+            
+            <!-- Keyframe animation demonstration -->
+            <div class="animation-stage">
+                <h3>CSS Keyframe Animation Demo</h3>
+                <p>Properties used: <code>animation-name</code>, <code>animation-duration</code>, <code>animation-iteration-count</code>, <code>animation-delay</code>, and <code>animation-timing-function</code>.</p>
+                
+                <div class="animated-banner-box">
+                    <div class="pulsing-badge">Live Pulsing Indicator</div>
+                    <div class="sliding-card">
+                        🚀 Sliding Animated Front-End Developer Badge
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination demonstration -->
+            <div class="pagination-section">
+                <h3>A. Hoverable Pagination with Spacing:</h3>
+                <ul class="pagination pagination-spaced">
+                    <li><a href="#prev">&laquo;</a></li>
+                    <li><a href="#1" class="active">1</a></li>
+                    <li><a href="#2">2</a></li>
+                    <li><a href="#3">3</a></li>
+                    <li><a href="#4">4</a></li>
+                    <li><a href="#next">&raquo;</a></li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">B. Bordered Pagination without Spacing (Continuous Bar):</h3>
+                <ul class="pagination pagination-continuous">
+                    <li><a href="#prev">&laquo;</a></li>
+                    <li><a href="#1">1</a></li>
+                    <li><a href="#2" class="active">2</a></li>
+                    <li><a href="#3">3</a></li>
+                    <li><a href="#4">4</a></li>
+                    <li><a href="#next">&raquo;</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Question 3: Positions (static, relative, fixed, absolute, sticky) -->
+        <section class="card">
+            <h2>3. CSS Positioning: Static, Relative, Absolute, Fixed & Sticky</h2>
+            <p>Demonstrating coordinates (<code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, and <code>z-index</code>):</p>
+            
+            <!-- Sticky demo header -->
+            <div class="sticky-demo-header">
+                📌 I am <code>position: sticky; top: 10px;</code> - Scroll past me to watch me pin to the viewport!
+            </div>
+
+            <div class="positioning-playground">
+                
+                <!-- Static box -->
+                <div class="pos-box pos-static">
+                    <strong>position: static</strong>
+                    <p>Default document flow. Ignores top/left offsets.</p>
+                </div>
+
+                <!-- Relative container holding absolute child -->
+                <div class="pos-box pos-relative">
+                    <strong>position: relative</strong>
+                    <p>Shifted 10px down relative to its normal position. Acts as bounding container for absolute children.</p>
+                    
+                    <!-- Absolute child -->
+                    <div class="pos-absolute-badge">
+                        position: absolute (top: -12px, right: -12px)
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Fixed element note -->
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #475569;">
+                <em>Notice the bottom-right corner of your browser screen: There is a <strong>position: fixed</strong> quick contact button!</em>
+            </p>
+        </section>
+
+        <!-- Question 4: Handling Overflow with Scroll -->
+        <section class="card">
+            <h2>4. Handling Overflow Using Scroll</h2>
+            <p>Constraining larger content inside a bounded container using <code>overflow: scroll</code> and <code>overflow: auto</code>:</p>
+            
+            <div class="overflow-grid">
+                
+                <div class="overflow-item">
+                    <h4>Vertical Overflow (overflow-y: scroll)</h4>
+                    <div class="overflow-box-y">
+                        <p>Line 1: Front-end UI architecture involves mastery of DOM tree hierarchy.</p>
+                        <p>Line 2: Semantic HTML gives meaning to content structures.</p>
+                        <p>Line 3: CSS Cascading Style Sheets handle positioning and layouts.</p>
+                        <p>Line 4: Flexbox simplifies 1D column and row distributions.</p>
+                        <p>Line 5: CSS Grid enables precise 2D two-dimensional grid layouts.</p>
+                        <p>Line 6: JavaScript controls real-time reactive interactivity.</p>
+                        <p>Line 7: Media queries provide fluid responsiveness across mobile screens.</p>
+                        <p>Line 8: Performance tuning ensures 60 FPS buttery smooth transitions.</p>
+                    </div>
+                </div>
+
+                <div class="overflow-item">
+                    <h4>Horizontal Overflow (overflow-x: auto)</h4>
+                    <div class="overflow-box-x">
+                        <div class="wide-timeline">
+                            <span class="timeline-step">1. HTML5</span> ➔
+                            <span class="timeline-step">2. CSS3 Flex/Grid</span> ➔
+                            <span class="timeline-step">3. JavaScript ES6+</span> ➔
+                            <span class="timeline-step">4. AngularJS / Modern Frameworks</span> ➔
+                            <span class="timeline-step">5. Job Ready Full-Stack Engineer</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Question 5: Adding Opacity to an Image -->
+        <section class="card">
+            <h2>5. Image Opacity & Hover Reveal</h2>
+            <p>Demonstrating <code>opacity: 0.4</code> with smooth hover transition to <code>opacity: 1.0</code>:</p>
+            
+            <div class="opacity-demo-row">
+                <div class="opacity-container">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&auto=format&fit=crop&q=80" alt="Team Work" class="opacity-img">
+                    <p class="caption">Hover mouse to reveal full 100% opacity</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Things to know & interview prep -->
+        <footer class="card interview-info">
+            <h3>Things to Know (CSS Effects)</h3>
+            <ul>
+                <li><strong>1. Understanding Position Properties:</strong>
+                    <ul>
+                        <li><code>static</code>: Normal document flow (default). Top/Right/Bottom/Left have no effect.</li>
+                        <li><code>relative</code>: Positioned relative to its normal position without taking it out of flow.</li>
+                        <li><code>absolute</code>: Positioned relative to its nearest non-static positioned ancestor. Removed from document flow.</li>
+                        <li><code>fixed</code>: Positioned relative to the browser viewport window; stays fixed during scrolling.</li>
+                        <li><code>sticky</code>: Toggles between relative and fixed depending on scroll offset.</li>
+                    </ul>
+                </li>
+                <li><strong>2. What is a Box Model?</strong>
+                    The CSS box model is a container that wraps every HTML element consisting of:
+                    <strong>Content</strong> (actual text/image) &rarr; <strong>Padding</strong> (clear area around content) &rarr; <strong>Border</strong> (border around padding) &rarr; <strong>Margin</strong> (clears area outside border).
+                    <code>box-sizing: border-box</code> includes padding and border in the element's total specified width and height.
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- Question 3 Demo: Position Fixed Floating Action Button -->
+    <div class="fixed-floating-btn" title="position: fixed demonstration">
+        <span>💬 Fixed Chat</span>
+    </div>
+
+</body>
+</html>
+

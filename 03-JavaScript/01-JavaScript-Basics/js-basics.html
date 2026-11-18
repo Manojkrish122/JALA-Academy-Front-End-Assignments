@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - JavaScript Basics Assignment</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #e0f2fe; }
+        .btn { padding: 9px 18px; background: #0284c7; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn:hover { background: #0369a1; }
+        .btn-danger { background: #dc2626; }
+        .btn-danger:hover { background: #b91c1c; }
+        .output-box { margin-top: 15px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border-left: 4px solid #0284c7; white-space: pre-wrap; }
+        .error-box { background: #fef2f2; border-left-color: #ef4444; color: #991b1b; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; background: #e0f2fe; color: #0369a1; margin-bottom: 8px; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #38bdf8; }
+        .interview-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .interview-table th, .interview-table td { border: 1px solid #334155; padding: 10px 14px; text-align: left; }
+        .interview-table th { background: #1e293b; color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>JavaScript Basics Assignment</h1>
+            <p>Single & multi-line comments, array sorting descending, for/in loop, object properties access, hoisting, and strict mode error demonstration.</p>
+        </header>
+
+        <!-- Question 1: Comments in JS (Demonstrated in script.js and shown on screen) -->
+        <section class="card">
+            <h2>1. Comments in JavaScript</h2>
+            <p>JavaScript supports single-line comments (<code>//</code>) and multi-line comments (<code>/* ... */</code>). See <code>script.js</code> for full internal documentation.</p>
+            <div class="output-box" id="commentsExplanation">
+// Single Line Comment: Used for short inline explanations
+/*
+   Multi-Line Comment:
+   Used for module overviews, license notices,
+   or complex algorithms.
+*/
+            </div>
+        </section>
+
+        <!-- Question 2: Array of Fruits & Sort in Descending Order on Button Click -->
+        <section class="card">
+            <h2>2. Array Sorting in Descending Order</h2>
+            <p>Initial array of fruits: <code>["Banana", "Orange", "Apple", "Mango", "Pineapple", "Grapes"]</code></p>
+            <button class="btn" id="sortFruitsBtn">Sort Fruits Descending (Z-A)</button>
+            <button class="btn" style="background:#64748b; margin-left: 8px;" id="resetFruitsBtn">Reset List</button>
+            
+            <div class="output-box" id="fruitsOutput">Click the button above to sort the array!</div>
+        </section>
+
+        <!-- Question 3: For/In Loop Program -->
+        <section class="card">
+            <h2>3. FOR/IN Loop Program</h2>
+            <p>The <code>for...in</code> loop iterates through all enumerable properties of an object:</p>
+            <button class="btn" id="runForInBtn">Run FOR/IN Loop on Candidate Profile</button>
+            <div class="output-box" id="forInOutput">Click to execute for...in iteration.</div>
+        </section>
+
+        <!-- Question 4: Person Object & 2 Different Ways of Accessing Properties -->
+        <section class="card">
+            <h2>4. Object Property Access: Dot Notation vs Bracket Notation</h2>
+            <p>Object: <code>const person = { firstname: "Vikram", lastname: "Aditya" };</code></p>
+            <button class="btn" id="accessPersonBtn">Display Properties via Both Ways</button>
+            <div class="output-box" id="personOutput">Click button to display.</div>
+        </section>
+
+        <!-- Question 5: Variable Hoisting (Initialization first, then declaration) -->
+        <section class="card">
+            <h2>5. Variable Hoisting Program</h2>
+            <p>Hoisting allows variables declared with <code>var</code> to be assigned/used before their physical declaration in code:</p>
+            <button class="btn" id="runHoistingBtn">Execute Hoisting Demo</button>
+            <div class="output-box" id="hoistingOutput">Click to view hoisting behavior explanation and output.</div>
+        </section>
+
+        <!-- Question 6: Strict Mode ("use strict";) Demonstration -->
+        <section class="card">
+            <h2>6. "use strict" Mode & Undeclared Variable Error</h2>
+            <p>Strict mode eliminates silent errors by throwing exceptions when assigning to undeclared variables:</p>
+            <button class="btn btn-danger" id="runStrictModeBtn">Test Undeclared Variable in Strict Mode</button>
+            <div class="output-box" id="strictModeOutput">Click button to run strict mode error test safely via try/catch.</div>
+        </section>
+
+        <!-- Interview Question: JavaScript vs Java -->
+        <footer class="card interview-info">
+            <h3>Things to Know: How JavaScript Differs from Java?</h3>
+            <p>Despite similar names, Java and JavaScript are two completely distinct languages developed for different paradigms:</p>
+            
+            <table class="interview-table">
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>JavaScript (JS)</th>
+                        <th>Java</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Type System</strong></td>
+                        <td>Dynamically typed (types resolved at runtime)</td>
+                        <td>Statically typed (types declared & checked at compile time)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Execution</strong></td>
+                        <td>Interpreted / JIT compiled by V8, SpiderMonkey</td>
+                        <td>Compiled to bytecode executed on Java Virtual Machine (JVM)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Object Model</strong></td>
+                        <td>Prototype-based inheritance</td>
+                        <td>Class-based object-oriented programming</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Concurrency</strong></td>
+                        <td>Single-threaded with asynchronous Event Loop</td>
+                        <td>Multi-threaded with thread pooling & synchronization</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Primary Domain</strong></td>
+                        <td>Web browser interactivity, Node.js server backends</td>
+                        <td>Enterprise backend services, Android apps, large distributed systems</td>
+                    </tr>
+                </tbody>
+            </table>
+        </footer>
+
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+

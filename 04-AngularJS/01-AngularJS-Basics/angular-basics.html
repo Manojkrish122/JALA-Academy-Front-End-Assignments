@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="basicsApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - AngularJS Basics Assignment</title>
+    <!-- AngularJS CDN with local fallback -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #fee2e2; }
+        .input-text { padding: 9px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; width: 100%; max-width: 380px; transition: background-color 0.3s ease; }
+        .dynamic-color-box { padding: 20px; border-radius: 8px; border: 2px solid #cbd5e1; margin-top: 15px; font-weight: 600; text-align: center; }
+        .color-chips { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .chip { padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; border: 1px solid #94a3b8; }
+        .scope-box { padding: 15px; border-radius: 6px; margin-top: 10px; font-family: monospace; }
+        .root-scope { background: #fef3c7; border-left: 4px solid #f59e0b; color: #78350f; }
+        .child-scope { background: #e0f2fe; border-left: 4px solid #0284c7; color: #075985; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #fca5a5; }
+        .list-group { list-style: none; margin-top: 10px; }
+        .list-group li { padding: 8px 12px; background: #f8fafc; border: 1px solid #e2e8f0; margin-bottom: 6px; border-radius: 4px; }
+    </style>
+</head>
+<body ng-controller="basicsMainCtrl">
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>AngularJS Basics Assignment</h1>
+            <p>Expression evaluation <code>{{ }}</code>, color changing text box, external modules, directives & controllers, <code>ng-model</code>, <code>ng-init</code>, <code>ng-repeat</code>, <code>ng-include</code>, and <code>$scope</code> vs <code>$rootScope</code>.</p>
+        </header>
+
+        <!-- Question 1: Expressions {{ }} and Dynamic Color Change Text Box -->
+        <section class="card">
+            <h2>1. Expressions & Background Color Changing Text Box</h2>
+            <p>AngularJS evaluates expressions written inside <code>{{ and }}</code>. For example: <strong>50 + 25 = {{ 50 + 25 }}</strong></p>
+            
+            <p style="margin-top: 15px;">Type a color name (or hex code) into the input box to instantly update its background color via <code>ng-style</code>:</p>
+            <input type="text" ng-model="boxBgColor" class="input-text" ng-style="{'background-color': boxBgColor}" placeholder="e.g. #fef08a, lightpink, cyan">
+            
+            <div class="color-chips">
+                <span>Quick Colors:</span>
+                <span class="chip" style="background:#fee2e2;" ng-click="setColor('#fee2e2')">Light Red</span>
+                <span class="chip" style="background:#fef08a;" ng-click="setColor('#fef08a')">Yellow</span>
+                <span class="chip" style="background:#dcfce7;" ng-click="setColor('#dcfce7')">Green</span>
+                <span class="chip" style="background:#e0f2fe;" ng-click="setColor('#e0f2fe')">Sky Blue</span>
+            </div>
+
+            <div class="dynamic-color-box" ng-style="{'background-color': boxBgColor}">
+                Box Background Color is currently: <code>{{ boxBgColor }}</code>
+            </div>
+        </section>
+
+        <!-- Question 2: External Module, Directive and Controller -->
+        <section class="card">
+            <h2>2. External Module, Directive & Controller Architecture</h2>
+            <p>This page connects an external module (<code>app.js</code>), an external controller (<code>myController.js</code>), and an external custom directive (<code>myDirective.js</code>):</p>
+            
+            <!-- Custom directive instantiated via element -->
+            <custom-course-banner course-name="Full Stack UI Engineering" duration="12 Weeks"></custom-course-banner>
+            <custom-course-banner course-name="AngularJS Component Masterclass" duration="4 Weeks"></custom-course-banner>
+        </section>
+
+        <!-- Question 3: ng-model, ng-init, ng-repeat, and ng-include -->
+        <section class="card" ng-init="defaultCourses = ['HTML5 Semantics', 'CSS3 Flex & Grid', 'JavaScript ES6+', 'AngularJS MVC Architecture', 'RESTful API Integration']">
+            <h2>3. Directives: ng-model, ng-init, ng-repeat & ng-include</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <h4>A. Two-Way Data Binding with ng-model:</h4>
+                <div style="display: flex; gap: 15px; margin-top: 8px;">
+                    <input type="text" ng-model="learnerName" class="input-text" placeholder="Learner Name">
+                    <input type="text" ng-model="learnerGoal" class="input-text" placeholder="Career Goal">
+                </div>
+                <p style="margin-top: 8px; color: #0284c7; font-weight: 600;">
+                    Live Bound Result: Hello {{ learnerName }}, targeting role: "{{ learnerGoal }}"!
+                </p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h4>B. Array Initialized via ng-init and Rendered via ng-repeat:</h4>
+                <ul class="list-group">
+                    <li ng-repeat="course in defaultCourses">
+                        {{ $index + 1 }}. {{ course }}
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>C. External View Included via ng-include:</h4>
+                <div ng-include="'external-header.html'"></div>
+            </div>
+        </section>
+
+        <!-- Question 4: $scope vs $rootScope -->
+        <section class="card">
+            <h2>4. Understanding Scope: $scope vs $rootScope</h2>
+            <p><strong>$rootScope</strong> is the top-level parent scope created when the application bootstraps. <strong>$scope</strong> is specific to an individual controller instance:</p>
+            
+            <div class="scope-box root-scope">
+                <strong>Global $rootScope:</strong><br>
+                Title: <code>{{ appTitle }}</code><br>
+                Status: <code>{{ sharedGlobalStatus }}</code>
+            </div>
+
+            <div class="scope-box child-scope">
+                <strong>Controller Local $scope (basicsMainCtrl):</strong><br>
+                Message: <code>{{ controllerScopedMessage }}</code><br>
+                Learner: <code>{{ learnerName }}</code>
+            </div>
+        </section>
+
+        <!-- Things to know -->
+        <footer class="card interview-info">
+            <h3>Things to Know: Benefits of AngularJS</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Two-Way Data Binding:</strong> Automatic synchronization between the Model and the View; changes in UI update model instantly and vice-versa without boilerplate DOM query selectors.</li>
+                <li><strong>MVC / MVVM Architecture:</strong> Clear separation between Business Logic (Model), User Interface (View), and Interaction Handler (Controller).</li>
+                <li><strong>Directives:</strong> Extends HTML vocabulary with custom attributes and elements (`ng-repeat`, `ng-model`, custom reusable components).</li>
+                <li><strong>Dependency Injection (DI):</strong> Built-in DI mechanism makes components loosely coupled, highly modular, and easily testable with mocks.</li>
+                <li><strong>Form Validation:</strong> Rich built-in client-side validation properties (`$valid`, `$invalid`, `$dirty`, `$pristine`, `$error`).</li>
+                <li><strong>Testability:</strong> Engineered from inception for end-to-end and unit testing with Karma and Jasmine.</li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- External Scripts for Module, Directive and Controller -->
+    <script src="app.js"></script>
+    <script src="myDirective.js"></script>
+    <script src="myController.js"></script>
+</body>
+</html>
+

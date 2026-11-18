@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Question 5: Viewport meta tag for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - CSS Compatibility & Responsive Layouts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <!-- Question 4: Hero Image Section with Overlay, Headline, and CTA -->
+    <header class="hero-banner">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1 class="hero-title">Master Modern Responsive CSS</h1>
+                <p class="hero-subtitle">High-performance CSS Grid, dynamic table layouts, list-style systems, and cross-device media queries.</p>
+                <a href="#demo-sections" class="hero-btn">Explore Live Demos</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="demo-sections">
+        
+        <!-- Question 1: Table-Layout: Fixed vs Auto -->
+        <section class="card">
+            <h2>1. Table Layout: Fixed vs Auto</h2>
+            <p>Comparing <code>table-layout: auto</code> (browser calculates cell widths by content length) vs <code>table-layout: fixed</code> (cells strictly obey specified column percentages):</p>
+            
+            <div class="table-comparison">
+                
+                <div class="table-item">
+                    <h3>A. table-layout: auto</h3>
+                    <table class="demo-table table-auto">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Short</th>
+                                <th style="width: 30%;">Medium</th>
+                                <th style="width: 50%;">Long Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A1</td>
+                                <td>Standard Text</td>
+                                <td>VeryLongUnbrokenContentStringThatForcesAutoTableToExpandAndOverrideDefinedPercentagesRegardlessOfWidthRules</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-item">
+                    <h3>B. table-layout: fixed (Strict Predictable Sizing)</h3>
+                    <table class="demo-table table-fixed">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Column 1 (25%)</th>
+                                <th style="width: 35%;">Column 2 (35%)</th>
+                                <th style="width: 40%;">Column 3 (40%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C1</td>
+                                <td>Structured Text</td>
+                                <td class="truncate-cell">VeryLongUnbrokenContentStringThatRespectsFixedColumnBoundariesAndTruncatesCleanly</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Question 2: List-Style-Type Customization -->
+        <section class="card">
+            <h2>2. Customizing List-Style-Type</h2>
+            <p>Demonstrating various unordered and ordered list bullet styles:</p>
+            
+            <div class="lists-grid">
+                
+                <div class="list-card">
+                    <h4>Square Bullets (list-style-type: square)</h4>
+                    <ul class="list-square">
+                        <li>HTML5 Living Standard</li>
+                        <li>CSS3 Box Sizing & Flexbox</li>
+                        <li>Modern JavaScript ES6+</li>
+                    </ul>
+                </div>
+
+                <div class="list-card">
+                    <h4>Circle Bullets (list-style-type: circle)</h4>
+                    <ul class="list-circle">
+                        <li>Responsive Web Design</li>
+                        <li>Mobile-First Media Queries</li>
+                        <li>Accessibility Standards (A11y)</li>
+                    </ul>
+                </div>
+
+                <div class="list-card">
+                    <h4>Upper Roman (list-style-type: upper-roman)</h4>
+                    <ol class="list-roman">
+                        <li>Requirement Gathering</li>
+                        <li>System Architecture</li>
+                        <li>Component Deployment</li>
+                    </ol>
+                </div>
+
+                <div class="list-card">
+                    <h4>Lower Alpha (list-style-type: lower-alpha)</h4>
+                    <ol class="list-alpha">
+                        <li>Unit & Integration Testing</li>
+                        <li>Cross-Browser Verification</li>
+                        <li>GitHub CI/CD Publishing</li>
+                    </ol>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Question 3 & 5: CSS Grids (Auto-fit, 12-Column, Areas) -->
+        <section class="card">
+            <h2>3 & 5. CSS Grid Systems (Responsive Auto-Fit & 3-Column Layout)</h2>
+            <p>Modern CSS Grid automatically wraps and scales based on viewport width without rigid breakpoints:</p>
+            
+            <div class="responsive-grid">
+                <div class="grid-card">
+                    <span class="grid-icon">⚡</span>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized rendering with minimal layout recalculations.</p>
+                </div>
+                <div class="grid-card">
+                    <span class="grid-icon">📱</span>
+                    <h3>Mobile Responsive</h3>
+                    <p>Fluidly adapts from 1 column on mobile to 4 columns on desktop.</p>
+                </div>
+                <div class="grid-card">
+                    <span class="grid-icon">🎨</span>
+                    <h3>Modern Design</h3>
+                    <p>Built with CSS custom properties, shadows, and subtle borders.</p>
+                </div>
+                <div class="grid-card">
+                    <span class="grid-icon">🛠</span>
+                    <h3>Maintainable</h3>
+                    <p>Modular code adhering to clean architecture conventions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 5: Responsive Video & Responsive Image Viewport Integration -->
+        <section class="card">
+            <h2>5. Responsive Media & Video Viewport Handling</h2>
+            <p>Responsive media container with 16:9 aspect ratio and <code>max-width: 100%</code> images:</p>
+            
+            <div class="media-container-grid">
+                
+                <div class="media-item">
+                    <h4>Responsive Image (Fluid Viewport)</h4>
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&auto=format&fit=crop&q=80" 
+                         alt="Responsive Circuit Board" 
+                         class="responsive-fluid-img">
+                </div>
+
+                <div class="media-item">
+                    <h4>Responsive Video Container (16:9 Aspect Ratio)</h4>
+                    <div class="video-responsive-wrapper">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Responsive Video Stream" 
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Things to know & interview prep -->
+        <footer class="card interview-info">
+            <h3>Things to Know (CSS Compatibility & Tables)</h3>
+            <ul>
+                <li><strong>1. Table Structure:</strong>
+                    A complete semantic table includes <code>&lt;table&gt;</code>, <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code> (header rows), <code>&lt;tbody&gt;</code> (data rows), <code>&lt;tfoot&gt;</code> (summary rows), <code>&lt;tr&gt;</code> (row), <code>&lt;th&gt;</code> (header cell), and <code>&lt;td&gt;</code> (data cell).
+                </li>
+                <li><strong>2. Cell Padding vs Cell Spacing:</strong>
+                    <ul>
+                        <li><strong>Cell Padding:</strong> The internal space between cell borders and cell contents (styled with <code>padding: 10px;</code> on <code>td</code>/<code>th</code>).</li>
+                        <li><strong>Cell Spacing:</strong> The external space between adjacent individual table cells (styled with <code>border-spacing: 5px;</code> on the <code>table</code> element, or removed via <code>border-collapse: collapse;</code>).</li>
+                    </ul>
+                </li>
+                <li><strong>3. What are Form Attributes?</strong>
+                    Key HTML form attributes include:
+                    <ul>
+                        <li><code>action</code>: Destination URL where data is transmitted on submission.</li>
+                        <li><code>method</code>: HTTP method used (<code>GET</code> for search/idempotent queries, <code>POST</code> for sensitive/state-modifying payloads).</li>
+                        <li><code>enctype</code>: Encoding type (e.g. <code>multipart/form-data</code> for file uploads, <code>application/x-www-form-urlencoded</code> for standard fields).</li>
+                        <li><code>target</code>: Window or frame where response is rendered (<code>_blank</code>, <code>_self</code>).</li>
+                        <li><code>autocomplete</code>: Enables or disables browser auto-completion (<code>on</code> / <code>off</code>).</li>
+                        <li><code>novalidate</code>: Bypasses default HTML5 browser validation to permit custom JS validation.</li>
+                    </ul>
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+

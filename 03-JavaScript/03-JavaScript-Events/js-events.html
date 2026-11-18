@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - JavaScript Events & DOM Assignment</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #ede9fe; }
+        .btn { padding: 9px 18px; background: #7c3aed; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { background: #6d28d9; }
+        .btn-cookie { background: #d97706; }
+        .btn-cookie:hover { background: #b45309; }
+        .btn-debug { background: #2563eb; }
+        .btn-debug:hover { background: #1d4ed8; }
+        .output-box { margin-top: 15px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border-left: 4px solid #7c3aed; white-space: pre-wrap; }
+        .form-row { display: flex; gap: 12px; align-items: flex-start; margin-top: 10px; flex-wrap: wrap; }
+        .text-input { padding: 9px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; flex: 1; min-width: 240px; }
+        .text-input:focus { outline: none; border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2); }
+        .validation-message { margin-top: 8px; font-size: 0.9rem; font-weight: 500; display: none; }
+        .val-error { color: #dc2626; display: block; }
+        .val-success { color: #16a34a; display: block; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #c4b5fd; }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>JavaScript Events, Validation & Cookies</h1>
+            <p>EventListener date/time display, form validation prevention, console debugging suite, cookie operations (set/get/check), and JSON object property dot-notation.</p>
+        </header>
+
+        <!-- Question 1: addEventListener Date & Time Display -->
+        <section class="card">
+            <h2>1. Event Listener: Display Current Date & Time</h2>
+            <p>Clicking the button triggers an attached <code>addEventListener('click', ...)</code> callback:</p>
+            <button class="btn" id="dateTimeBtn">Show Current Date & Time</button>
+            <div class="output-box" id="dateTimeDisplay">Waiting for click event...</div>
+        </section>
+
+        <!-- Question 2: JavaScript Form Validation (Non-empty field check) -->
+        <section class="card">
+            <h2>2. JavaScript Form Validation (Required Field Check)</h2>
+            <p>Submitting without entering a name triggers client-side validation, preventing empty dispatch:</p>
+            
+            <form id="studentRegistrationForm" onsubmit="return false;">
+                <div class="form-row">
+                    <input type="text" id="candidateNameInput" class="text-input" placeholder="Enter Full Name (Cannot be empty)">
+                    <button type="submit" class="btn" id="submitFormBtn">Submit Registration</button>
+                </div>
+                <div id="validationFeedback" class="validation-message"></div>
+            </form>
+        </section>
+
+        <!-- Question 3: How console.log() is used for Debugging -->
+        <section class="card">
+            <h2>3. Debugging with console.log() and DevTools</h2>
+            <p>Click the button below to trigger diagnostic logs. Open your browser Developer Console (Press <strong>F12</strong> &rarr; <strong>Console</strong>) to see output!</p>
+            <button class="btn btn-debug" id="runConsoleDemoBtn">Trigger console.log(), table(), warn(), error()</button>
+            <div class="output-box" id="consoleOutput">Click the button, then inspect your Browser DevTools Console (F12).</div>
+        </section>
+
+        <!-- Question 4: Cookies: setCookie, getCookie, and checkCookie -->
+        <section class="card">
+            <h2>4. Cookie Operations: Set, Get & Check in a Single Program</h2>
+            <p>Manage browser cookies directly using JavaScript's <code>document.cookie</code> API:</p>
+            
+            <div class="form-row">
+                <input type="text" id="cookieUserNameInput" class="text-input" placeholder="Enter username for cookie (e.g. Priya_Sharma)">
+                <button class="btn btn-cookie" id="setCookieBtn">1. Set Cookie (7 Days)</button>
+                <button class="btn" style="background:#0284c7;" id="getCookieBtn">2. Get Cookie</button>
+                <button class="btn" style="background:#16a34a;" id="checkCookieBtn">3. Check Cookie</button>
+                <button class="btn" style="background:#dc2626;" id="deleteCookieBtn">Delete Cookie</button>
+            </div>
+            <div class="output-box" id="cookieStatusDisplay">Cookie status will appear here...</div>
+        </section>
+
+        <!-- Question 5: JSON Object & Dot Notation Access -->
+        <section class="card">
+            <h2>5. JSON Object Creation & Dot Notation Access</h2>
+            <p>Creating a JSON object and accessing nested attributes using dot notation:</p>
+            <button class="btn" id="runJsonDemoBtn">Parse JSON & Read via Dot Notation</button>
+            <div class="output-box" id="jsonOutput">Click to parse JSON object.</div>
+        </section>
+
+        <!-- Things to know -->
+        <footer class="card interview-info">
+            <h3>Things to Know (JavaScript Debugging & Cookies)</h3>
+            <ul>
+                <li><strong>1. Debugging in JavaScript:</strong>
+                    <ul>
+                        <li><strong>Console APIs:</strong> <code>console.log()</code>, <code>console.error()</code>, <code>console.warn()</code>, <code>console.table()</code>, <code>console.time()</code>/<code>console.timeEnd()</code>.</li>
+                        <li><strong>Debugger Statement:</strong> Placing <code>debugger;</code> in code automatically pauses execution in browser DevTools.</li>
+                        <li><strong>DevTools Breakpoints:</strong> Line-of-code breakpoints, conditional breakpoints, DOM mutation breakpoints, and XHR/fetch breakpoints.</li>
+                        <li><strong>Call Stack & Scope Inspection:</strong> Inspecting local, closure, and global variable values in real-time.</li>
+                    </ul>
+                </li>
+                <li><strong>2. What are Cookies?</strong>
+                    <ul>
+                        <li>Small key-value text pairs (max ~4 KB) stored by the web browser on the client machine.</li>
+                        <li>Transmitted to the server automatically with every subsequent HTTP request within the same domain.</li>
+                        <li>Attributes: <code>expires</code>/<code>max-age</code>, <code>path</code>, <code>domain</code>, <code>Secure</code> (HTTPS only), <code>SameSite</code> (CSRF protection), and <code>HttpOnly</code> (prevents client-side JS read for sensitive auth tokens).</li>
+                    </ul>
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="filtersApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - AngularJS Filters & Services Assignment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
+        .card { background: #ffffff; border-radius: 8px; padding: 26px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1, h2, h3 { color: #0f172a; margin-bottom: 12px; }
+        .header-card { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; text-align: center; }
+        .header-card h1 { color: white; margin-bottom: 6px; }
+        .header-card p { color: #e0f2fe; }
+        .btn { padding: 9px 18px; background: #0284c7; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn:hover { background: #0369a1; }
+        .btn-post { background: #16a34a; }
+        .btn-post:hover { background: #15803d; }
+        .filter-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .filter-table th, .filter-table td { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: left; }
+        .filter-table th { background-color: #f1f5f9; color: #0f172a; }
+        .output-box { margin-top: 15px; padding: 14px; background: #f1f5f9; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border-left: 4px solid #0284c7; white-space: pre-wrap; }
+        .interview-info { background: #0f172a; color: #f8fafc; }
+        .interview-info h3 { color: #38bdf8; }
+    </style>
+</head>
+<body ng-controller="filtersCtrl">
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="container">
+        
+        <header class="card header-card">
+            <h1>AngularJS Filters, Services & APIs</h1>
+            <p>Built-in filters (date, uppercase, lowercase, number, currency), custom filters, services ($location, $http, $timeout, custom service), HTTP response properties, and global Angular APIs.</p>
+        </header>
+
+        <!-- Question 1: Built-in & Custom Filters -->
+        <section class="card">
+            <h2>1. Built-in & Custom Filters</h2>
+            <p>Filters transform expressions for formatted display without modifying the underlying model data:</p>
+            
+            <table class="filter-table">
+                <thead>
+                    <tr>
+                        <th>Filter Type</th>
+                        <th>Expression Syntax</th>
+                        <th>Formatted Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Date Filter</strong></td>
+                        <td><code>currentDate | date:'fullDate'</code></td>
+                        <td>{{ currentDate | date:'fullDate' }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date (Custom Format)</strong></td>
+                        <td><code>currentDate | date:'yyyy-MM-dd HH:mm:ss'</code></td>
+                        <td>{{ currentDate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uppercase</strong></td>
+                        <td><code>sampleText | uppercase</code></td>
+                        <td>{{ sampleText | uppercase }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lowercase</strong></td>
+                        <td><code>sampleText | lowercase</code></td>
+                        <td>{{ sampleText | lowercase }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Number Formatting</strong></td>
+                        <td><code>largeNumber | number:2</code></td>
+                        <td>{{ largeNumber | number:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Currency Filter</strong></td>
+                        <td><code>salary | currency:'₹':0</code></td>
+                        <td>{{ salary | currency:'₹':0 }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Filter 1 (reverseText)</strong></td>
+                        <td><code>'AngularJS' | reverseText</code></td>
+                        <td><span style="color:#0284c7; font-weight:bold;">{{ 'AngularJS' | reverseText }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom Filter 2 (titleCase)</strong></td>
+                        <td><code>'hello world from jala academy' | titleCase</code></td>
+                        <td><span style="color:#16a34a; font-weight:bold;">{{ 'hello world from jala academy' | titleCase }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Question 2: Built-in Services & Custom Service -->
+        <section class="card">
+            <h2>2. Built-in Services ($location, $timeout) & Custom Service</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="background:#f8fafc; padding:15px; border-radius:6px; border:1px solid #e2e8f0;">
+                    <h4>A. $location Service:</h4>
+                    <p style="font-size:0.9rem; margin-top:6px;">
+                        <strong>Protocol:</strong> {{ currentProtocol }}<br>
+                        <strong>Host:</strong> {{ currentHost }}<br>
+                        <strong>Port:</strong> {{ currentPort }}<br>
+                        <strong>Absolute URL:</strong> <small style="word-break:break-all;">{{ currentUrl }}</small>
+                    </p>
+                </div>
+
+                <div style="background:#f8fafc; padding:15px; border-radius:6px; border:1px solid #e2e8f0;">
+                    <h4>B. $timeout Service:</h4>
+                    <p style="font-size:0.95rem; margin-top:6px; color:#0369a1; font-weight:600;">
+                        {{ timeoutMessage }}
+                    </p>
+                </div>
+
+                <div style="background:#f8fafc; padding:15px; border-radius:6px; border:1px solid #e2e8f0;">
+                    <h4>C. Custom Service (CalculationService):</h4>
+                    <p style="font-size:0.9rem; margin-top:6px;">
+                        Monthly Stipend: ₹{{ monthlyRate | number }}<br>
+                        Duration: {{ months }} Months<br>
+                        <strong>Total via Service:</strong> <span style="color:#15803d; font-weight:bold;">{{ formattedStipend }}</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Question 3: HTTP Methods get(), post() & properties (.config, .data, .status) -->
+        <section class="card">
+            <h2>3. $http Methods: get(), post() & Response Inspection</h2>
+            <p>Click either button to execute an HTTP request and inspect properties: <code>.status</code>, <code>.data</code>, and <code>.config</code>:</p>
+            
+            <div style="display: flex; gap: 12px; margin-top: 12px;">
+                <button class="btn" ng-click="executeHttpGet()">Execute $http.get()</button>
+                <button class="btn btn-post" ng-click="executeHttpPost()">Execute $http.post()</button>
+            </div>
+
+            <div class="output-box" ng-if="httpResult">
+=== HTTP RESPONSE INSPECTION ===
+Method Used:     {{ httpResult.method }}
+Response Status: {{ httpResult.status }} ({{ httpResult.statusText }})
+
+• response.config.url:
+  {{ httpResult.config.url }}
+
+• response.config.method:
+  {{ httpResult.config.method }}
+
+• response.data (Received Payload):
+{{ httpResult.data | json }}
+            </div>
+        </section>
+
+        <!-- Question 4: Angular Global APIs -->
+        <section class="card">
+            <h2>4. Angular Global APIs (angular.lowercase, isString, isNumber)</h2>
+            <div class="output-box">
+Original String:   "{{ testString }}"
+angular.lowercase: "{{ apiResults.lowercaseResult }}"
+angular.uppercase: "{{ apiResults.uppercaseResult }}"
+angular.isString:  {{ apiResults.isStringResult }}
+angular.isNumber:  {{ apiResults.isNumberResult }}
+angular.isDate:    {{ apiResults.isDateResult }}
+            </div>
+        </section>
+
+        <!-- Things to know -->
+        <footer class="card interview-info">
+            <h3>Things to Know: Filters and Angular APIs</h3>
+            <ul>
+                <li><strong>What is a Filter?</strong> A filter formats the value of an expression for display to the user without changing the source value in the Model. Filters can be applied in templates via pipe syntax (<code>{{ expression | filterName:arg1:arg2 }}</code>) or injected as dependencies in controllers (e.g. <code>$filter('currency')(value)</code>).</li>
+                <li><strong>Built-in Filters:</strong> <code>currency</code>, <code>date</code>, <code>filter</code>, <code>json</code>, <code>limitTo</code>, <code>lowercase</code>, <code>number</code>, <code>orderBy</code>, <code>uppercase</code>.</li>
+                <li><strong>Angular Global API:</strong> Utility functions exposed on the global <code>angular</code> namespace that replace utility libraries like lodash for fundamental tasks: <code>angular.copy()</code> (deep cloning), <code>angular.element()</code> (jqLite DOM wrapper), <code>angular.equals()</code> (deep comparison), <code>angular.forEach()</code>, <code>angular.fromJson()</code> / <code>angular.toJson()</code>.</li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALA Academy - HTML5 Semantic Elements & Page Structure</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        .wrapper { max-width: 1024px; margin: 0 auto; padding: 20px; }
+        
+        /* Semantic Header & Navigation */
+        header.site-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        hgroup h1 { font-size: 2rem; color: #38bdf8; margin-bottom: 6px; }
+        hgroup p { font-size: 1.05rem; color: #94a3b8; }
+        
+        nav.main-nav {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 16px;
+            border-radius: 8px;
+            display: flex;
+            gap: 20px;
+        }
+        nav.main-nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav.main-nav a:hover { color: #38bdf8; }
+
+        /* Grid Layout: Main vs Aside */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Semantic Section & Article */
+        section.main-content { display: flex; flex-direction: column; gap: 25px; }
+        
+        article.blog-article {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        article h2 { color: #0f172a; margin-bottom: 8px; font-size: 1.5rem; }
+        .meta-info { font-size: 0.85rem; color: #64748b; margin-bottom: 15px; }
+
+        /* Semantic Mark Tag */
+        mark {
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        /* Semantic Figure & Figcaption */
+        figure {
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        figcaption {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #475569;
+            font-style: italic;
+        }
+
+        /* Semantic Aside (Sidebar) */
+        aside.sidebar {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        aside h3 { color: #0f172a; margin-bottom: 12px; font-size: 1.2rem; border-bottom: 2px solid #38bdf8; padding-bottom: 6px; }
+
+        /* Non-semantic vs Semantic Demo Cards */
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 25px;
+        }
+
+        /* Semantic Table */
+        table.semantic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table.semantic-table th, table.semantic-table td {
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        table.semantic-table th { background-color: #f1f5f9; color: #0f172a; font-weight: 600; }
+        table.semantic-table tr:nth-child(even) { background-color: #f8fafc; }
+
+        /* Semantic Form */
+        .styled-form { display: grid; gap: 15px; margin-top: 15px; max-width: 450px; }
+        .styled-form input, .styled-form button {
+            padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;
+        }
+        .styled-form button { background: #0284c7; color: white; border: none; font-weight: 600; cursor: pointer; }
+
+        /* Non-semantic element demo */
+        .non-semantic-box {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        /* Semantic Footer */
+        footer.site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        footer a { color: #38bdf8; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Navigation Back to Main Showcase Portfolio -->
+    <a href="../../index.html" class="portfolio-back-pill" style="position: fixed; top: 16px; left: 16px; z-index: 9999; background: #0f172a; color: #f8fafc; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; font-family: sans-serif; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span>←</span> Portfolio Hub
+    </a>
+
+    <div class="wrapper">
+        
+        <!-- Semantic Tag: <header> with <hgroup> and <nav> -->
+        <header class="site-header">
+            <hgroup>
+                <h1>HTML5 Semantic Architecture Showcase</h1>
+                <p>Demonstrating clean web semantics, accessible document outlines, and modern tag structures.</p>
+            </hgroup>
+            
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="#article-section">Article & Figure</a>
+                <a href="#semantic-elements">Form & Table</a>
+                <a href="#non-semantic-comparison">Div & Span Comparison</a>
+            </nav>
+        </header>
+
+        <!-- Main Layout with <section>, <article>, and <aside> -->
+        <div class="layout-grid">
+            
+            <!-- Semantic Tag: <section> -->
+            <section class="main-content" id="article-section">
+                
+                <!-- Semantic Tag: <article> -->
+                <article class="blog-article">
+                    <h2>Why Semantic HTML5 Matters for Modern Web Developers</h2>
+                    <div class="meta-info">
+                        Published on <time datetime="2026-11-04">November 4, 2026</time> by JALA UI Engineering Team
+                    </div>
+
+                    <p>
+                        Semantic HTML introduces tags that <mark>clearly describe their meaning</mark> to both browser engines and developers. Before HTML5, developers relied on endless generic <code>&lt;div&gt;</code> tags with arbitrary classes like <code>&lt;div class="header"&gt;</code>.
+                    </p>
+
+                    <!-- Semantic Tag: <figure> and <figcaption> -->
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=80" 
+                             alt="Code editor showing modern HTML5 semantics">
+                        <figcaption>Figure 1: Clean code structure using native HTML5 tags improves accessibility (A11y) and SEO.</figcaption>
+                    </figure>
+
+                    <p>
+                        Using elements like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, and <code>&lt;aside&gt;</code> allows assistive screen readers to accurately navigate landmarks and indexes search results efficiently.
+                    </p>
+                </article>
+
+            </section>
+
+            <!-- Semantic Tag: <aside> -->
+            <aside class="sidebar">
+                <h3>About the Author (aside)</h3>
+                <p>
+                    The <code>&lt;aside&gt;</code> tag represents content indirectly related to the main document context, such as author bios, sidebars, related posts, or pull quotes.
+                </p>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: #64748b;">
+                    <strong>Fast Fact:</strong> Search engine crawlers give semantic tags higher architectural weight than generic divs.
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- Question 2: Semantic Elements <form>, <table> and <article> -->
+        <section class="card" id="semantic-elements">
+            <h2>Semantic Elements: &lt;table&gt; and &lt;form&gt;</h2>
+            <p>Tables and forms carry built-in semantic roles for structured data presentation and user input collection.</p>
+            
+            <!-- Semantic Table with thead, tbody, tfoot -->
+            <table class="semantic-table">
+                <caption><strong>Table 1: Front-End Core Technologies Matrix</strong></caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Technology</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Semantic Standard</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HTML5</td>
+                        <td>Document Structure & Meaning</td>
+                        <td>W3C / WHATWG Semantic Elements</td>
+                    </tr>
+                    <tr>
+                        <td>CSS3</td>
+                        <td>Presentation, Layout & Animations</td>
+                        <td>Flexbox, Grid, Media Queries</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Client Interactivity & Logic</td>
+                        <td>ECMAScript 2026+ Standard</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><em>All three technologies work in concert to deliver modern web apps.</em></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <!-- Semantic Form -->
+            <h3 style="margin-top: 25px; margin-bottom: 10px;">Semantic Form Example:</h3>
+            <form action="#" method="POST" class="styled-form">
+                <label for="learnerEmail">Subscribe to Front-End Updates:</label>
+                <input type="email" id="learnerEmail" name="learnerEmail" placeholder="your.email@example.com" required>
+                <button type="submit">Subscribe Now</button>
+            </form>
+        </section>
+
+        <!-- Question 1: Non-Semantic Elements <div> and <span> Comparison -->
+        <section class="card" id="non-semantic-comparison">
+            <h2>Non-Semantic Elements: &lt;div&gt; vs &lt;span&gt;</h2>
+            <p>
+                Non-semantic elements tell nothing about their content. They serve purely as generic hooks for styling or DOM manipulation.
+            </p>
+
+            <div class="non-semantic-box">
+                <strong>Generic Block Container (<code>&lt;div&gt;</code>):</strong>
+                <p>
+                    This whole alert is wrapped in a <code>&lt;div&gt;</code>. Inside this paragraph, individual terms like 
+                    <span style="background: #fee2e2; color: #b91c1c; font-weight: bold; padding: 2px 5px; border-radius: 3px;">inline span text</span> 
+                    are wrapped in <code>&lt;span&gt;</code> tags. The browser treats neither of these with special structural semantics.
+                </p>
+            </div>
+        </section>
+
+        <!-- Semantic Tag: <footer> -->
+        <footer class="site-footer">
+            <p>&copy; <time datetime="2026">2026</time> JALA Academy Placement Prep. All rights reserved.</p>
+            <p>Built with Semantic HTML5 Tags: <code>article</code>, <code>aside</code>, <code>figcaption</code>, <code>figure</code>, <code>footer</code>, <code>header</code>, <code>hgroup</code>, <code>mark</code>, <code>nav</code>, <code>section</code>, <code>time</code>.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+
